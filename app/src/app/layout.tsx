@@ -1,0 +1,50 @@
+import type { Metadata } from "next";
+import { Sora, DM_Sans } from "next/font/google";
+import "./globals.css";
+
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "Megatrendikone – Miten megatrendit vaikuttavat yritykseesi?",
+  description: "Analysoi yrityksesi Sitran Megatrendit 2026 -datan pohjalta. Saat visuaalisen profiilikortin ja PDF-raportin.",
+  keywords: ["megatrendit", "Sitra", "yritysanalyysi", "tulevaisuus", "strategia"],
+  openGraph: {
+    title: "Megatrendikone – Miten megatrendit vaikuttavat yritykseesi?",
+    description: "Analysoi yrityksesi Sitran Megatrendit 2026 -datan pohjalta.",
+    url: "https://megatrendikone.fi",
+    siteName: "Megatrendikone",
+    locale: "fi_FI",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Megatrendikone",
+    description: "Miten megatrendit vaikuttavat sinun yritykseesi?",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="fi">
+      <body
+        className={`${sora.variable} ${dmSans.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
