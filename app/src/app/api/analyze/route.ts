@@ -27,10 +27,10 @@ async function generateFutureImage(
     topOpportunity: string
 ): Promise<string | undefined> {
     try {
-        const prompt = `Create a futuristic, optimistic visualization for ${companyName}, a company in the ${industry} sector. 
+        const prompt = `Create a futuristic, optimistic visualization for ${companyName}, an organization in the ${industry} sector.
 The image should represent their future success in: ${topOpportunity}.
-Style: Modern, professional, hopeful, with subtle tech elements. 
-Use a cool color palette with teal and blue accents. 
+Style: Modern, professional, hopeful, with subtle tech elements.
+Use a cool color palette with teal and blue accents.
 Show abstract or symbolic representation of innovation and growth.
 No text, logos, or words in the image.
 Photorealistic style with cinematic lighting.`;
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         // Validate inputs
         if (!companyName || !websiteUrl) {
             return NextResponse.json<AnalysisResponse>(
-                { success: false, error: 'Yrityksen nimi ja verkkosivun osoite ovat pakollisia.' },
+                { success: false, error: 'Organisaation nimi ja verkkosivun osoite ovat pakollisia.' },
                 { status: 400 }
             );
         }

@@ -56,6 +56,6 @@ ${truncatedContent}
 
     } catch (error) {
         console.error('Scraping error:', error);
-        return `Verkkosivun ${url} sisällön hakeminen epäonnistui. Analysoi yritys nimen perusteella.`;
+        return `Verkkosivun ${url} sisällön hakeminen epäonnistui. Analysoi organisaatio nimen perusteella.`;
     }
 }

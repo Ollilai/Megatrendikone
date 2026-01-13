@@ -15,12 +15,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Megatrendikone – Miten megatrendit vaikuttavat yritykseesi?",
-  description: "Analysoi yrityksesi Sitran Megatrendit 2026 -datan pohjalta. Saat visuaalisen profiilikortin ja PDF-raportin.",
-  keywords: ["megatrendit", "Sitra", "yritysanalyysi", "tulevaisuus", "strategia"],
+  title: "Megatrendikone – Miten megatrendit vaikuttavat organisaatioosi?",
+  description: "Analysoi organisaatiosi megatrendien valossa. Saat visuaalisen tulevaisuuskortin.",
+  keywords: ["megatrendit", "organisaatioanalyysi", "tulevaisuus", "strategia", "julkinen sektori"],
   openGraph: {
-    title: "Megatrendikone – Miten megatrendit vaikuttavat yritykseesi?",
-    description: "Analysoi yrityksesi Sitran Megatrendit 2026 -datan pohjalta.",
+    title: "Megatrendikone – Miten megatrendit vaikuttavat organisaatioosi?",
+    description: "Analysoi organisaatiosi megatrendien valossa.",
     url: "https://megatrendikone.fi",
     siteName: "Megatrendikone",
     locale: "fi_FI",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Megatrendikone",
-    description: "Miten megatrendit vaikuttavat sinun yritykseesi?",
+    description: "Miten megatrendit vaikuttavat sinun organisaatioosi?",
   },
 };
 
