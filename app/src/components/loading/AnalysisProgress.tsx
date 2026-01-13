@@ -83,12 +83,21 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     className="text-lg text-slate-300"
+                    role="status"
+                    aria-live="polite"
                 >
                     {LOADING_MESSAGES[messageIndex]}
                 </motion.p>
 
                 {/* Progress bar */}
-                <div className="mt-8 w-full bg-slate-700 rounded-full h-2 overflow-hidden">
+                <div
+                    className="mt-8 w-full bg-slate-700 rounded-full h-2 overflow-hidden"
+                    role="progressbar"
+                    aria-valuenow={progress}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label="Analyysin edistyminen"
+                >
                     <motion.div
                         className="h-full bg-gradient-to-r from-teal-500 to-blue-500"
                         initial={{ width: 0 }}

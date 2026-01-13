@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { toPng } from 'html-to-image';
+import { useState } from 'react';
+import Link from 'next/link';
 import { type AnalysisResult } from '@/lib/megatrends';
 
 interface ShareButtonsProps {
@@ -10,7 +10,6 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ data }: ShareButtonsProps) {
     const [downloading, setDownloading] = useState(false);
-    const downloadRef = useRef<HTMLDivElement>(null);
 
     const handleDownloadImage = async () => {
         if (downloading) return;
@@ -56,7 +55,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 )}
             </button>
 
-            <a
+            <Link
                 href="/"
                 className="flex items-center gap-2 px-6 py-3 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white font-semibold rounded-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:bg-slate-800/50"
             >
@@ -64,7 +63,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
                 Analysoi toinen yritys
-            </a>
+            </Link>
         </div>
     );
 }

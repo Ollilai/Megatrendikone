@@ -2,6 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { AnalysisProgress } from '@/components/loading/AnalysisProgress';
 import { FlipCard } from '@/components/results/FlipCard';
@@ -62,17 +63,17 @@ function AnalyzeContent() {
     // Error state
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
+            <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4" role="alert" aria-live="assertive">
                 <div className="max-w-md text-center">
-                    <p className="text-6xl mb-4">😕</p>
+                    <p className="text-6xl mb-4" aria-hidden="true">😕</p>
                     <h1 className="text-2xl font-bold text-white mb-4">Hups! Jotain meni pieleen</h1>
                     <p className="text-slate-400 mb-6">{error}</p>
-                    <a
+                    <Link
                         href="/"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-400 text-white font-semibold rounded-xl transition-all"
                     >
                         ← Yritä uudelleen
-                    </a>
+                    </Link>
                 </div>
             </div>
         );
@@ -125,7 +126,7 @@ function AnalyzeContent() {
                                     <span className="text-2xl">📊</span> Megatrendianalyysi
                                 </h2>
                                 <div className="space-y-4">
-                                    {sortedTrends.map(({ key, emoji, label, color, score, reasoning }) => (
+                                    {sortedTrends.map(({ key, emoji, label, score, reasoning }) => (
                                         <div key={key} className="bg-slate-900/50 rounded-xl p-5 border border-slate-700/30 hover:border-slate-600 transition-colors">
                                             <div className="flex items-center justify-between mb-2">
                                                 <span className="flex items-center gap-2">
