@@ -54,27 +54,16 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         className="relative z-10 max-w-2xl w-full text-center"
       >
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/20 rounded-full text-teal-400 text-sm mb-8"
-        >
-          <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-          Powered by Sitran Megatrendit 2026 -data
-        </motion.div>
-
         {/* Main headline */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
           Miten megatrendit vaikuttavat{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">
-            sinun yritykseesi?
+            sinun organisaatioosi?
           </span>
         </h1>
 
         <p className="text-lg text-slate-400 mb-10 max-w-xl mx-auto">
-          Analysoi yrityksesi megatrendien valossa ja saa jaettava profiilikortti sekä PDF-raportti.
+          Analysoi organisaatiosi megatrendien valossa ja saa jaettava tulevaisuuskortti.
         </p>
 
         {/* Form */}
@@ -89,10 +78,10 @@ export default function Home() {
           <div className="space-y-4">
             <Input
               id="companyName"
-              label="Yrityksen nimi"
+              label="Organisaation nimi"
               value={companyName}
               onChange={(e) => setCompanyName(e.target.value)}
-              placeholder="esim. Kone Oyj"
+              placeholder="esim. Kone Oyj, Helsingin kaupunki"
               disabled={isLoading}
               fullWidth
             />
@@ -136,7 +125,7 @@ export default function Home() {
 
         {/* Footer */}
         <p className="mt-8 text-sm text-slate-500">
-          Lähde: <a href="https://www.sitra.fi/julkaisut/megatrendit-2026/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:underline">Sitra, Megatrendit 2026</a> (CC BY-SA 4.0)
+          <a href="/about" className="text-teal-400 hover:underline">Tietoa palvelusta</a>
         </p>
       </motion.div>
     </div>

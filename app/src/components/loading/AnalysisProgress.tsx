@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const LOADING_MESSAGES = [
-    'Tutkitaan yritystäsi...',
+    'Tutkitaan organisaatiotasi...',
     'Analysoidaan verkkosivuja...',
     'Sovitetaan megatrendeihin...',
     'Arvioidaan vaikutuksia...',

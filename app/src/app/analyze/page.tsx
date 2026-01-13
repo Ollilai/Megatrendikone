@@ -20,7 +20,7 @@ function AnalyzeContent() {
 
     useEffect(() => {
         if (!companyName || !websiteUrl) {
-            setError('Yrityksen nimi ja verkkosivujen osoite puuttuvat');
+            setError('Organisaation nimi ja verkkosivujen osoite puuttuvat');
             setIsLoading(false);
             return;
         }
@@ -173,16 +173,9 @@ function AnalyzeContent() {
 
                     {/* Footer */}
                     <p className="mt-12 text-center text-sm text-slate-500">
-                        Lähde:{' '}
-                        <a
-                            href="https://www.sitra.fi/julkaisut/megatrendit-2026/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-teal-400 hover:underline"
-                        >
-                            Sitra, Megatrendit 2026
-                        </a>{' '}
-                        (CC BY-SA 4.0)
+                        <Link href="/about" className="text-teal-400 hover:underline">
+                            Tietoa palvelusta
+                        </Link>
                     </p>
                 </motion.div>
             </div>
