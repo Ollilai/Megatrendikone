@@ -27,13 +27,14 @@ async function generateFutureImage(
     topOpportunity: string
 ): Promise<string | undefined> {
     try {
-        const prompt = `Create a futuristic, optimistic visualization for ${companyName}, an organization in the ${industry} sector.
-The image should represent their future success in: ${topOpportunity}.
-Style: Modern, professional, hopeful, with subtle tech elements.
-Use a cool color palette with teal and blue accents.
-Show abstract or symbolic representation of innovation and growth.
-No text, logos, or words in the image.
-Photorealistic style with cinematic lighting.`;
+        const prompt = `Create a realistic, professional photograph representing ${companyName} thriving in the future.
+Context: ${industry} sector, succeeding in: ${topOpportunity}.
+Style: High-quality editorial photography, natural lighting, hopeful and optimistic mood.
+The image should feel grounded and believable, like a photo from a business magazine 5 years from now.
+Include subtle hints of progress and innovation - modern but not sci-fi.
+Color palette: Natural tones with subtle teal and warm accents.
+No text, logos, watermarks, or words in the image.
+Photorealistic, documentary style, shallow depth of field.`;
 
         // Using the correct model name per Google docs
         const response = await genai.models.generateContent({
