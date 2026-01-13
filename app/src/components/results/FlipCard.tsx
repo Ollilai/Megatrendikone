@@ -10,6 +10,17 @@ interface FlipCardProps {
 
 export function FlipCard({ data }: FlipCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
+    const [flipAnnouncement, setFlipAnnouncement] = useState('');
+
+    const handleFlip = () => {
+        const newFlipped = !isFlipped;
+        setIsFlipped(newFlipped);
+        setFlipAnnouncement(
+            newFlipped
+                ? 'Kortti käännetty: Näytetään tulevaisuusvisio'
+                : 'Kortti käännetty: Näytetään megatrendipisteet'
+        );
+    };
 
     const sortedTrends = (Object.keys(MEGATRENDS) as MegatrendKey[])
         .map((key) => ({
@@ -23,6 +34,16 @@ export function FlipCard({ data }: FlipCardProps) {
 
     return (
         <div className="relative w-full max-w-md mx-auto" style={{ perspective: '1000px' }}>
+            {/* Screen reader announcement for flip state */}
+            <div
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                className="sr-only"
+            >
+                {flipAnnouncement}
+            </div>
+
             {/* click hint */}
             <p className="text-center text-sm text-slate-400 mb-4" id="flip-hint">
                 👆 Klikkaa tai paina Enter kääntääksesi
@@ -40,11 +61,11 @@ export function FlipCard({ data }: FlipCardProps) {
                     width: '100%',
                     aspectRatio: '4/5',
                 }}
-                onClick={() => setIsFlipped(!isFlipped)}
+                onClick={handleFlip}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        setIsFlipped(!isFlipped);
+                        handleFlip();
                     }
                 }}
             >
@@ -182,7 +203,12 @@ export function FlipCard({ data }: FlipCardProps) {
             {/* Side indicator */}
             <div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Kortin puoli">
                 <button
-                    onClick={() => setIsFlipped(false)}
+                    onClick={() => {
+                        if (isFlipped) {
+                            setIsFlipped(false);
+                            setFlipAnnouncement('Kortti käännetty: Näytetään megatrendipisteet');
+                        }
+                    }}
                     aria-label="Näytä etupuoli: Megatrendipisteet"
                     aria-selected={!isFlipped}
                     role="tab"
@@ -190,7 +216,12 @@ export function FlipCard({ data }: FlipCardProps) {
                         }`}
                 />
                 <button
-                    onClick={() => setIsFlipped(true)}
+                    onClick={() => {
+                        if (!isFlipped) {
+                            setIsFlipped(true);
+                            setFlipAnnouncement('Kortti käännetty: Näytetään tulevaisuusvisio');
+                        }
+                    }}
                     aria-label="Näytä takapuoli: Tulevaisuusvisio"
                     aria-selected={isFlipped}
                     role="tab"

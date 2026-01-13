@@ -110,6 +110,8 @@ export default function Home() {
 
           {error && (
             <motion.p
+              role="alert"
+              aria-live="assertive"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-error text-sm mt-4"
