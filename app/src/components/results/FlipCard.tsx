@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { type AnalysisResult, MEGATRENDS, type MegatrendKey } from '@/lib/megatrends';
+import { type AnalysisResult } from '@/lib/megatrends';
 
 interface FlipCardProps {
     data: AnalysisResult;
@@ -11,29 +11,34 @@ interface FlipCardProps {
 export function FlipCard({ data }: FlipCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [flipAnnouncement, setFlipAnnouncement] = useState('');
+    const [hasAutoFlipped, setHasAutoFlipped] = useState(false);
+
+    // Auto-flip after 5 seconds (only once)
+    useEffect(() => {
+        if (!hasAutoFlipped) {
+            const timer = setTimeout(() => {
+                setIsFlipped(true);
+                setFlipAnnouncement('Kortti käännetty: Näytetään tulevaisuuskuva');
+                setHasAutoFlipped(true);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [hasAutoFlipped]);
 
     const handleFlip = () => {
         const newFlipped = !isFlipped;
         setIsFlipped(newFlipped);
         setFlipAnnouncement(
             newFlipped
-                ? 'Kortti käännetty: Näytetään tulevaisuusvisio'
-                : 'Kortti käännetty: Näytetään megatrendipisteet'
+                ? 'Kortti käännetty: Näytetään tulevaisuuskuva'
+                : 'Kortti käännetty: Näytetään keskeiset havainnot'
         );
     };
-
-    const sortedTrends = (Object.keys(MEGATRENDS) as MegatrendKey[])
-        .map((key) => ({
-            key,
-            ...MEGATRENDS[key],
-            score: data.megatrendScores[key].score,
-        }))
-        .sort((a, b) => b.score - a.score);
 
     const companyInitial = data.company.name.charAt(0).toUpperCase();
 
     return (
-        <div className="relative w-full max-w-md mx-auto" style={{ perspective: '1000px' }}>
+        <div className="relative w-full max-w-lg mx-auto" style={{ perspective: '1000px' }}>
             {/* Screen reader announcement for flip state */}
             <div
                 role="status"
@@ -46,20 +51,20 @@ export function FlipCard({ data }: FlipCardProps) {
 
             {/* click hint */}
             <p className="text-center text-sm text-slate-400 mb-4" id="flip-hint">
-                👆 Klikkaa tai paina Enter kääntääksesi
+                👆 Klikkaa korttia kääntääksesi {!hasAutoFlipped && '(kääntyy automaattisesti)'}
             </p>
 
             {/* Card container */}
             <div
                 role="button"
                 tabIndex={0}
-                aria-label="Megatrendikortti: Etupuolella megatrendipisteet, takapuolella tulevaisuusvisio. Käännä painamalla Enter tai välilyönti."
+                aria-label="Tulevaisuuskortti: Etupuolella keskeiset havainnot, takapuolella tulevaisuuskuva. Käännä painamalla Enter tai välilyönti."
                 aria-details="flip-hint"
-                className="relative cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 rounded-2xl group transition-transform duration-500 hover:scale-[1.02]"
+                className="relative cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 rounded-2xl group transition-transform duration-500 hover:scale-[1.01]"
                 style={{
                     perspective: '1000px',
                     width: '100%',
-                    aspectRatio: '4/5',
+                    aspectRatio: '3/4',
                 }}
                 onClick={handleFlip}
                 onKeyDown={(e) => {
@@ -77,7 +82,7 @@ export function FlipCard({ data }: FlipCardProps) {
                     animate={{ rotateY: isFlipped ? 180 : 0 }}
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
                 >
-                    {/* Front side - Megatrend scores */}
+                    {/* Front side - Insights & Wild Card */}
                     <div
                         className="absolute inset-0 rounded-2xl overflow-hidden"
                         style={{
@@ -89,17 +94,17 @@ export function FlipCard({ data }: FlipCardProps) {
                             {/* Gradient mesh bg */}
                             <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-slate-900 to-accent-900/20" />
 
-                            <div className="relative z-10 p-6 flex flex-col h-full">
+                            <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
                                 {/* Header */}
                                 <div className="text-center mb-4">
-                                    <p className="text-primary-400 text-xs font-bold tracking-[0.2em] mb-2 uppercase">Megatrendiprofiili 2026</p>
+                                    <p className="text-primary-400 text-xs font-bold tracking-[0.2em] mb-3 uppercase">Tulevaisuuskortti 2026</p>
                                     <div className="flex items-center justify-center gap-4 mb-2">
-                                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-xl font-bold">
+                                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-2xl font-bold shadow-lg">
                                             {companyInitial}
                                         </div>
                                         <div className="text-left">
-                                            <h2 className="text-lg font-bold text-white leading-tight">{data.company.name}</h2>
-                                            <p className="text-xs text-slate-400">{data.company.industry}</p>
+                                            <h2 className="text-xl font-bold text-white leading-tight">{data.company.name}</h2>
+                                            <p className="text-sm text-slate-400">{data.company.industry}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -107,45 +112,44 @@ export function FlipCard({ data }: FlipCardProps) {
                                 {/* Divider */}
                                 <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-4" />
 
-                                {/* Scores */}
-                                <div className="flex-1 space-y-3">
-                                    {sortedTrends.map(({ key, emoji, label, color, score }) => (
-                                        <div key={key}>
-                                            <div className="flex items-center justify-between mb-1">
-                                                <span className="flex items-center gap-2">
-                                                    <span className="text-lg">{emoji}</span>
-                                                    <span className="text-xs font-semibold text-white">{label}</span>
-                                                </span>
-                                                <span className="text-sm font-bold text-white">{score}%</span>
-                                            </div>
-                                            <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                                <motion.div
-                                                    initial={{ width: 0 }}
-                                                    animate={{ width: `${score}%` }}
-                                                    transition={{ duration: 0.8, delay: 0.2 }}
-                                                    className="h-full rounded-full"
-                                                    style={{ backgroundColor: color }}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
+                                {/* Top opportunity highlight */}
+                                <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-4 mb-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-xl">🎯</span>
+                                        <span className="text-xs font-bold text-teal-400 uppercase tracking-wide">#1 Mahdollisuus</span>
+                                    </div>
+                                    <p className="text-base font-semibold text-white">{data.topOpportunity.title}</p>
+                                    <p className="text-sm text-slate-300 mt-1">{data.topOpportunity.description}</p>
                                 </div>
 
-                                {/* Divider */}
-                                <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent my-4" />
-
-                                {/* Top opportunity */}
-                                <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-3">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <span className="text-lg">🎯</span>
-                                        <span className="text-xs font-bold text-teal-400">#1 MAHDOLLISUUS</span>
+                                {/* Key insights */}
+                                <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <span className="text-lg">💡</span>
+                                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wide">Keskeiset havainnot</span>
                                     </div>
-                                    <p className="text-sm font-semibold text-white">{data.topOpportunity.title}</p>
+                                    <ul className="space-y-2">
+                                        {data.insights.slice(0, 3).map((insight, i) => (
+                                            <li key={i} className="flex items-start gap-2 text-sm text-slate-300 bg-slate-800/50 rounded-lg p-3">
+                                                <span className="text-teal-400 mt-0.5 flex-shrink-0">•</span>
+                                                <span className="leading-relaxed">{insight}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* Wild card - smaller */}
+                                <div className="mt-4 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className="text-sm">⚠️</span>
+                                        <span className="text-xs font-bold text-amber-400">VILLI KORTTI</span>
+                                    </div>
+                                    <p className="text-sm font-medium text-white">{data.wildCard.title}</p>
                                 </div>
 
                                 {/* Footer */}
                                 <div className="mt-4 text-center text-xs text-slate-500">
-                                    megatrendikone.fi • Lähde: Sitra 2026
+                                    megatrendikone.fi
                                 </div>
                             </div>
                         </div>
@@ -166,7 +170,7 @@ export function FlipCard({ data }: FlipCardProps) {
                                 {data.futureImageUrl ? (
                                     <img
                                         src={data.futureImageUrl}
-                                        alt="Tulevaisuusvisio"
+                                        alt={`${data.company.name} tulevaisuudessa`}
                                         className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
                                     />
                                 ) : (
@@ -183,16 +187,21 @@ export function FlipCard({ data }: FlipCardProps) {
                             </div>
 
                             {/* Text overlay at bottom */}
-                            <div className="p-6 bg-slate-900/90 backdrop-blur-sm">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-2xl">🔮</span>
-                                    <h3 className="text-lg font-bold text-white">Tulevaisuusvisio</h3>
+                            <div className="p-6 bg-slate-900/95 backdrop-blur-sm">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-lg font-bold">
+                                        {companyInitial}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white">{data.company.name}</h3>
+                                        <p className="text-xs text-slate-400">Tulevaisuusvisio 2026</p>
+                                    </div>
                                 </div>
-                                <p className="text-sm text-slate-300 mb-2">
-                                    {data.company.name}n tulevaisuus: {data.topOpportunity.title.toLowerCase()}
+                                <p className="text-sm text-slate-300">
+                                    {data.topOpportunity.title}
                                 </p>
-                                <p className="text-xs text-slate-500">
-                                    Kuva generoitu tekoälyllä megatrendianalyysin perusteella
+                                <p className="text-xs text-slate-500 mt-2">
+                                    megatrendikone.fi
                                 </p>
                             </div>
                         </div>
@@ -206,10 +215,10 @@ export function FlipCard({ data }: FlipCardProps) {
                     onClick={() => {
                         if (isFlipped) {
                             setIsFlipped(false);
-                            setFlipAnnouncement('Kortti käännetty: Näytetään megatrendipisteet');
+                            setFlipAnnouncement('Kortti käännetty: Näytetään keskeiset havainnot');
                         }
                     }}
-                    aria-label="Näytä etupuoli: Megatrendipisteet"
+                    aria-label="Näytä etupuoli: Keskeiset havainnot"
                     aria-selected={!isFlipped}
                     role="tab"
                     className={`w-2 h-2 rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${!isFlipped ? 'bg-teal-400 w-6' : 'bg-slate-600'
@@ -219,10 +228,10 @@ export function FlipCard({ data }: FlipCardProps) {
                     onClick={() => {
                         if (!isFlipped) {
                             setIsFlipped(true);
-                            setFlipAnnouncement('Kortti käännetty: Näytetään tulevaisuusvisio');
+                            setFlipAnnouncement('Kortti käännetty: Näytetään tulevaisuuskuva');
                         }
                     }}
-                    aria-label="Näytä takapuoli: Tulevaisuusvisio"
+                    aria-label="Näytä takapuoli: Tulevaisuuskuva"
                     aria-selected={isFlipped}
                     role="tab"
                     className={`w-2 h-2 rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${isFlipped ? 'bg-teal-400 w-6' : 'bg-slate-600'
