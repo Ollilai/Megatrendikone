@@ -56,7 +56,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 const images = backRef.current.querySelectorAll('img');
                 const imageLoadPromises = Array.from(images).map(img => {
                     if (img.complete) return Promise.resolve();
-                    return new Promise((resolve, reject) => {
+                    return new Promise<void>((resolve, reject) => {
                         img.onload = () => resolve();
                         img.onerror = () => reject(new Error('Image failed to load'));
                         // Timeout after 10 seconds
