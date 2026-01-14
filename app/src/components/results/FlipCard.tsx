@@ -79,6 +79,7 @@ export function FlipCard({ data }: FlipCardProps) {
                     className="w-full relative"
                     style={{
                         transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
                         minHeight: '600px',
                     }}
                     animate={{ rotateY: isFlipped ? 180 : 0 }}
@@ -90,6 +91,10 @@ export function FlipCard({ data }: FlipCardProps) {
                         style={{
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
+                            transform: 'rotateY(0deg) translateZ(1px)',
+                            WebkitTransform: 'rotateY(0deg) translateZ(1px)',
+                            zIndex: 2,
+                            willChange: 'transform',
                         }}
                     >
                         <div className="bg-slate-900 border border-slate-700/50 rounded-2xl shadow-2xl relative">
@@ -145,7 +150,10 @@ export function FlipCard({ data }: FlipCardProps) {
                         style={{
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
-                            transform: 'rotateY(180deg)',
+                            transform: 'rotateY(180deg) translateZ(1px)',
+                            WebkitTransform: 'rotateY(180deg) translateZ(1px)',
+                            zIndex: 1,
+                            willChange: 'transform',
                         }}
                     >
                         <div className="w-full h-full bg-slate-900 border border-slate-700/50 rounded-2xl overflow-hidden shadow-2xl flex flex-col relative group">
