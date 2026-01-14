@@ -51,29 +51,19 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 throw new Error('Empty response from server');
             }
 
-            const file = new File([blob], filename, { type: 'image/png' });
-            console.log('File created:', file.name, file.size, file.type);
-
-            // Try native sharing first (works on mobile)
-            if (navigator.share && navigator.canShare({ files: [file] })) {
-                console.log('Using native share');
-                await navigator.share({
-                    files: [file],
-                    title: filename,
-                });
-                console.log('Share completed successfully');
-            } else {
-                // Fallback to classic download
-                console.log('Using classic download');
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                setTimeout(() => URL.revokeObjectURL(link.href), 100);
-                console.log('Download triggered');
-            }
+            // Use classic download for server-generated images
+            // Note: navigator.share() requires synchronous call from user gesture,
+            // but our async fetch takes ~7s, losing the gesture context.
+            // Classic download works reliably across all platforms.
+            console.log('Triggering download');
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+            console.log('Download completed');
         } catch (error) {
             console.error('Download failed:', error);
             console.error('Error details:', error instanceof Error ? error.message : String(error));
