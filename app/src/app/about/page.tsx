@@ -77,7 +77,9 @@ export default function AboutPage() {
                         <h2 className="text-2xl font-bold text-white mb-4">Miten Megatrendikone toimii?</h2>
                         <p className="text-slate-300 leading-relaxed mb-6">
                             Uskon läpinäkyvyyteen tekoälytyökalujen kanssa. Tässä kuvaus siitä, miten Megatrendikone
-                            toimii teknisesti ja mitä tekoälymallit tekevät taustalla.
+                            toimii teknisesti ja mitä tekoälymallit tekevät taustalla. Järjestelmä koostuu viidestä vaiheesta,
+                            joista <strong>RAG-haku</strong> (vaihe 2) on ratkaiseva innovaatio, joka varmistaa analyysin
+                            faktapohjaisuuden.
                         </p>
 
                         <div className="space-y-6">
@@ -94,18 +96,51 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">2.</span> Megatrendi-analyysi (GPT-5.1 o1)
+                                    <span className="text-teal-400">2.</span> RAG-haku Sitran megatrendidatasta
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6 mb-3">
-                                    Järjestelmä lähettää organisaatiosi tiedot ja Sitran megatrendit OpenAI:n GPT-5.1 o1 -mallille.
-                                    Tämä on tekoälymalli, joka on suunniteltu erityisesti syvälliseen päättelyyn ja monimutkaisten
-                                    yhteyksien hahmottamiseen.
+                                    <strong>Tämä on kriittinen osa järjestelmää.</strong> Käytän RAG-tekniikkaa (Retrieval Augmented Generation)
+                                    varmistaakseni, että analyysi perustuu aidosti Sitran megatrendi-raporttiin, ei vain tekoälyn
+                                    "muistiin" tai yleiseen tietoon.
+                                </p>
+                                <div className="ml-6 bg-slate-800/50 rounded-lg p-4 border border-slate-700 mb-3">
+                                    <p className="text-sm font-mono text-slate-300 mb-2">RAG-prosessi:</p>
+                                    <ul className="text-sm text-slate-400 space-y-2 ml-4">
+                                        <li>
+                                            <strong className="text-slate-300">1. Vektorisointi:</strong> Sitran 71-sivuinen PDF on käsitelty
+                                            semanttisiksi chunkeiksi (~250 osiota). Jokaiselle on luotu OpenAI text-embedding-3-small -vektori.
+                                        </li>
+                                        <li>
+                                            <strong className="text-slate-300">2. Semanttinen haku:</strong> Organisaatiosi tiedot muunnetaan
+                                            samanlaiseksi vektoriksi ja haetaan 10 relevanteinta osiota Sitran datasta (cosine similarity).
+                                        </li>
+                                        <li>
+                                            <strong className="text-slate-300">3. Kontekstin injektio:</strong> Nämä löydetyt osiot injektoidaan
+                                            promptiin varmistaen, että analyysi perustuu oikeisiin lähdetietoihin.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className="text-slate-300 leading-relaxed ml-6">
+                                    Tämä tarkoittaa, että analyysi ei perustu "muistiin" vaan aina haetaan täsmälleen ne osat
+                                    Sitran raportista, jotka ovat relevanteimpia juuri sinun organisaatiollesi.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                                    <span className="text-teal-400">3.</span> Megatrendi-analyysi (GPT-5.1 o1)
+                                </h3>
+                                <p className="text-slate-300 leading-relaxed ml-6 mb-3">
+                                    Kun relevantit osiot Sitran datasta on löydetty, järjestelmä lähettää ne yhdessä organisaatiosi
+                                    tietojen kanssa OpenAI:n GPT-5.1 o1 -mallille. Tämä on tekoälymalli, joka on suunniteltu
+                                    erityisesti syvälliseen päättelyyn ja monimutkaisten yhteyksien hahmottamiseen.
                                 </p>
                                 <div className="ml-6 bg-slate-800/50 rounded-lg p-4 border border-slate-700">
                                     <p className="text-sm font-mono text-slate-300 mb-2">Promptin rakenne:</p>
                                     <ul className="text-sm text-slate-400 space-y-1 ml-4">
                                         <li>• Organisaation perustiedot ja toiminta</li>
-                                        <li>• Sitran 4 megatrendiä täydellä kuvauksella</li>
+                                        <li>• <strong className="text-teal-400">RAG-haulla löydetyt relevanteimmat osiot Sitran raportista</strong></li>
+                                        <li>• Sitran 4 megatrendin yleiskatsaus</li>
                                         <li>• Ohjeet analyysin laatimiseen (mahdollisuudet, uhat, yhteiskuntasopimus)</li>
                                         <li>• Vaatimus käytännönläheisyydelle ja konkreettisuudelle</li>
                                     </ul>
@@ -118,7 +153,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">3.</span> Tulevaisuuskuvan generointi (Gemini 2.5 Flash Image)
+                                    <span className="text-teal-400">4.</span> Tulevaisuuskuvan generointi (Gemini 2.5 Flash Image)
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6 mb-3">
                                     Rinnakkain analyysin kanssa, järjestelmä pyytää Googlen Gemini 2.5 Flash Image -mallia
@@ -138,7 +173,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">4.</span> Tulosten esittäminen
+                                    <span className="text-teal-400">5.</span> Tulosten esittäminen
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6">
                                     Saat analyysin, jossa on keskeinen mahdollisuus, yllättävä uhka, rooli yhteiskuntasopimuksessa
@@ -154,7 +189,8 @@ export default function AboutPage() {
                                 <div className="ml-6 space-y-2">
                                     <p className="text-slate-300"><strong>Frontend:</strong> Next.js 15, React, TypeScript, Tailwind CSS</p>
                                     <p className="text-slate-300"><strong>Backend:</strong> Next.js API Routes (palvelinkomponentit)</p>
-                                    <p className="text-slate-300"><strong>Tekoälymallit:</strong> OpenAI GPT-5.1 o1 (analyysi), Google Gemini 2.5 Flash Image (kuvat)</p>
+                                    <p className="text-slate-300"><strong>Tekoälymallit:</strong> OpenAI GPT-5.1 o1 (analyysi), Google Gemini 2.5 Flash Image (kuvat), OpenAI text-embedding-3-small (RAG)</p>
+                                    <p className="text-slate-300"><strong>RAG-järjestelmä:</strong> Pre-computed embeddings (~250 chunks Sitran PDF:stä), in-memory cosine similarity search</p>
                                     <p className="text-slate-300"><strong>Hosting:</strong> Vercel (Edge Network)</p>
                                     <p className="text-slate-300"><strong>Välimuisti:</strong> Vercel KV (Redis) – 24h säilytys</p>
                                     <p className="text-slate-300">
