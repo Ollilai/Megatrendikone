@@ -77,9 +77,7 @@ export default function AboutPage() {
                         <h2 className="text-2xl font-bold text-white mb-4">Miten Megatrendikone toimii?</h2>
                         <p className="text-slate-300 leading-relaxed mb-6">
                             Uskon läpinäkyvyyteen tekoälytyökalujen kanssa. Tässä kuvaus siitä, miten Megatrendikone
-                            toimii teknisesti ja mitä tekoälymallit tekevät taustalla. Järjestelmä koostuu viidestä vaiheesta,
-                            joista <strong>RAG-haku</strong> (vaihe 2) on ratkaiseva innovaatio, joka varmistaa analyysin
-                            faktapohjaisuuden.
+                            toimii teknisesti ja mitä tekoälymallit tekevät taustalla.
                         </p>
 
                         <div className="space-y-6">
@@ -99,9 +97,8 @@ export default function AboutPage() {
                                     <span className="text-teal-400">2.</span> RAG-haku Sitran megatrendidatasta
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6 mb-3">
-                                    <strong>Tämä on kriittinen osa järjestelmää.</strong> Käytän RAG-tekniikkaa (Retrieval Augmented Generation)
-                                    varmistaakseni, että analyysi perustuu aidosti Sitran megatrendi-raporttiin, ei vain tekoälyn
-                                    "muistiin" tai yleiseen tietoon.
+                                    Käytän RAG-tekniikkaa (Retrieval Augmented Generation) varmistaakseni, että analyysi
+                                    perustuu aidosti Sitran megatrendi-raporttiin, ei vain tekoälyn "muistiin" tai yleiseen tietoon.
                                 </p>
                                 <div className="ml-6 bg-slate-800/50 rounded-lg p-4 border border-slate-700 mb-3">
                                     <p className="text-sm font-mono text-slate-300 mb-2">RAG-prosessi:</p>
@@ -146,8 +143,9 @@ export default function AboutPage() {
                                     </ul>
                                 </div>
                                 <p className="text-slate-300 leading-relaxed ml-6 mt-3">
-                                    Malli ei "muista" mitään aiemmista analyyseista – jokainen pyyntö on itsenäinen,
-                                    ja tietosi eivät käytetä mallin kouluttamiseen.
+                                    <strong>Välimuisti ja luonto:</strong> Jos joku on hakenut saman organisaation analyysin viimeisen
+                                    24 tunnin aikana, saat tulokset suoraan välimuistista ilman uutta tekoälykutsua. Tämä säästää
+                                    energiaa, rahaa ja on nopeampaa. Tietojasi ei kuitenkaan koskaan käytetä tekoälymallien kouluttamiseen.
                                 </p>
                             </div>
 
