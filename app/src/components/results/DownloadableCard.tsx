@@ -75,63 +75,45 @@ export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCard
                         {/* Divider */}
                         <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, #475569, transparent)', marginBottom: '32px' }} />
 
-                        {/* Top opportunity */}
+                        {/* Top opportunity - equal weight */}
                         <div
                             style={{
                                 backgroundColor: 'rgba(20, 184, 166, 0.1)',
                                 border: '1px solid rgba(20, 184, 166, 0.2)',
-                                borderRadius: '16px',
-                                padding: '24px',
+                                borderRadius: '20px',
+                                padding: '32px',
                                 marginBottom: '32px',
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
                             }}
                         >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-                                <span style={{ fontSize: '28px' }}>🎯</span>
-                                <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#14b8a6', textTransform: 'uppercase', letterSpacing: '0.1em' }}>#1 Mahdollisuus</span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+                                <span style={{ fontSize: '36px' }}>🎯</span>
+                                <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#14b8a6', textTransform: 'uppercase', letterSpacing: '0.15em' }}>#1 Mahdollisuus</span>
                             </div>
-                            <p style={{ fontSize: '24px', fontWeight: '600', color: 'white', margin: '0 0 8px' }}>{data.topOpportunity.title}</p>
-                            <p style={{ fontSize: '16px', color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{data.topOpportunity.description}</p>
+                            <p style={{ fontSize: '28px', fontWeight: '600', color: 'white', margin: '0 0 16px', lineHeight: 1.3 }}>{data.topOpportunity.title}</p>
+                            <p style={{ fontSize: '18px', color: '#cbd5e1', margin: 0, lineHeight: 1.7 }}>{data.topOpportunity.description}</p>
                         </div>
 
-                        {/* Key insights */}
-                        <div style={{ flex: 1 }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-                                <span style={{ fontSize: '24px' }}>💡</span>
-                                <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Keskeiset havainnot</span>
-                            </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                {data.insights.slice(0, 3).map((insight, i) => (
-                                    <div key={i} style={{
-                                        display: 'flex',
-                                        alignItems: 'flex-start',
-                                        gap: '16px',
-                                        backgroundColor: 'rgba(30, 41, 59, 0.5)',
-                                        borderRadius: '12px',
-                                        padding: '20px',
-                                    }}>
-                                        <span style={{ color: '#14b8a6', fontSize: '20px', flexShrink: 0 }}>•</span>
-                                        <span style={{ fontSize: '17px', color: '#e2e8f0', lineHeight: 1.6 }}>{insight}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Wild card with full description */}
+                        {/* Wild card - equal weight */}
                         <div
                             style={{
                                 backgroundColor: 'rgba(245, 158, 11, 0.1)',
                                 border: '1px solid rgba(245, 158, 11, 0.2)',
-                                borderRadius: '12px',
-                                padding: '20px',
-                                marginTop: '24px',
+                                borderRadius: '20px',
+                                padding: '32px',
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
                             }}
                         >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                                <span style={{ fontSize: '20px' }}>⚠️</span>
-                                <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#f59e0b', textTransform: 'uppercase' }}>Villi kortti</span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+                                <span style={{ fontSize: '36px' }}>⚠️</span>
+                                <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Villi Kortti</span>
                             </div>
-                            <p style={{ fontSize: '18px', fontWeight: '600', color: 'white', margin: '0 0 8px' }}>{data.wildCard.title}</p>
-                            <p style={{ fontSize: '14px', color: '#cbd5e1', margin: 0, lineHeight: 1.5 }}>{data.wildCard.description}</p>
+                            <p style={{ fontSize: '28px', fontWeight: '600', color: 'white', margin: '0 0 16px', lineHeight: 1.3 }}>{data.wildCard.title}</p>
+                            <p style={{ fontSize: '18px', color: '#cbd5e1', margin: 0, lineHeight: 1.7 }}>{data.wildCard.description}</p>
                         </div>
 
                         {/* Footer */}

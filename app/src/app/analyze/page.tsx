@@ -198,19 +198,9 @@ function AnalyzeContent() {
                         transition={{ delay: 0.4 }}
                         className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/20 rounded-2xl p-6 md:p-8 mb-12"
                     >
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="text-3xl">⚠️</span>
-                            <h3 className="text-xl font-bold text-amber-400">VILLI KORTTI – Varaudu tähän</h3>
-                        </div>
+                        <h3 className="text-xl font-bold text-amber-400 mb-4">VILLI KORTTI</h3>
                         <h4 className="text-xl font-semibold text-white mb-3">{result.wildCard.title}</h4>
                         <p className="text-slate-300 leading-relaxed">{result.wildCard.description}</p>
-                        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 rounded-full text-sm text-amber-300">
-                            <span>Todennäköisyys:</span>
-                            <span className="font-semibold">
-                                {result.wildCard.likelihood === 'low' ? 'Matala' :
-                                    result.wildCard.likelihood === 'medium' ? 'Keskitaso' : 'Korkea'}
-                            </span>
-                        </div>
                     </motion.div>
 
                     {/* Consulting CTA */}
@@ -232,9 +222,9 @@ function AnalyzeContent() {
                                 href="https://ollilaitinen.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-100 text-slate-900 font-bold rounded-xl transition-all shadow-lg"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-100 text-black font-bold rounded-xl transition-all shadow-lg"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
                                 ollilaitinen.com

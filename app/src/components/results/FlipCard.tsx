@@ -31,7 +31,7 @@ export function FlipCard({ data }: FlipCardProps) {
         setFlipAnnouncement(
             newFlipped
                 ? 'Kortti käännetty: Näytetään tulevaisuuskuva'
-                : 'Kortti käännetty: Näytetään keskeiset havainnot'
+                : 'Kortti käännetty: Näytetään mahdollisuus ja villi kortti'
         );
     };
 
@@ -58,7 +58,7 @@ export function FlipCard({ data }: FlipCardProps) {
             <div
                 role="button"
                 tabIndex={0}
-                aria-label="Tulevaisuuskortti: Etupuolella keskeiset havainnot, takapuolella tulevaisuuskuva. Käännä painamalla Enter tai välilyönti."
+                aria-label="Tulevaisuuskortti: Etupuolella mahdollisuus ja villi kortti, takapuolella tulevaisuuskuva. Käännä painamalla Enter tai välilyönti."
                 aria-details="flip-hint"
                 className="relative cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 rounded-2xl group transition-transform duration-500 hover:scale-[1.01]"
                 style={{
@@ -113,38 +113,24 @@ export function FlipCard({ data }: FlipCardProps) {
                                 {/* Divider */}
                                 <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-3" />
 
-                                {/* Top opportunity highlight */}
-                                <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-3 mb-3">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <span className="text-lg">🎯</span>
+                                {/* Top opportunity - equal weight */}
+                                <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-4 mb-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-xl">🎯</span>
                                         <span className="text-xs font-bold text-teal-400 uppercase tracking-wide">#1 Mahdollisuus</span>
                                     </div>
-                                    <p className="text-sm font-semibold text-white">{data.topOpportunity.title}</p>
+                                    <p className="text-base font-semibold text-white mb-2">{data.topOpportunity.title}</p>
+                                    <p className="text-sm text-slate-300 leading-relaxed">{data.topOpportunity.description}</p>
                                 </div>
 
-                                {/* Key insights */}
-                                <div className="mb-3">
+                                {/* Wild card - equal weight */}
+                                <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-base">💡</span>
-                                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wide">Keskeiset havainnot</span>
+                                        <span className="text-xl">⚠️</span>
+                                        <span className="text-xs font-bold text-amber-400 uppercase tracking-wide">Villi Kortti</span>
                                     </div>
-                                    <ul className="space-y-2">
-                                        {data.insights.slice(0, 3).map((insight, i) => (
-                                            <li key={i} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-800/50 rounded-lg p-2">
-                                                <span className="text-teal-400 mt-0.5 flex-shrink-0">•</span>
-                                                <span className="leading-relaxed line-clamp-3">{insight}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                {/* Wild card - smaller */}
-                                <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <span className="text-sm">⚠️</span>
-                                        <span className="text-xs font-bold text-amber-400">VILLI KORTTI</span>
-                                    </div>
-                                    <p className="text-xs font-medium text-white">{data.wildCard.title}</p>
+                                    <p className="text-base font-semibold text-white mb-2">{data.wildCard.title}</p>
+                                    <p className="text-sm text-slate-300 leading-relaxed">{data.wildCard.description}</p>
                                 </div>
 
                                 {/* Footer */}
@@ -215,10 +201,10 @@ export function FlipCard({ data }: FlipCardProps) {
                     onClick={() => {
                         if (isFlipped) {
                             setIsFlipped(false);
-                            setFlipAnnouncement('Kortti käännetty: Näytetään keskeiset havainnot');
+                            setFlipAnnouncement('Kortti käännetty: Näytetään mahdollisuus ja villi kortti');
                         }
                     }}
-                    aria-label="Näytä etupuoli: Keskeiset havainnot"
+                    aria-label="Näytä etupuoli: Mahdollisuus ja villi kortti"
                     aria-selected={!isFlipped}
                     role="tab"
                     className={`w-2 h-2 rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${!isFlipped ? 'bg-teal-400 w-6' : 'bg-slate-600'
