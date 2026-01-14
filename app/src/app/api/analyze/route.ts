@@ -2,6 +2,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { GoogleGenAI } from '@google/genai';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
+import { kv } from '@vercel/kv';
 import { scrapeWebsite } from '@/lib/scraper';
 import { SYSTEM_PROMPT, buildUserPrompt } from '@/lib/prompts';
 import { AnalysisResult, AnalysisResponse, getCompanyLogoUrl } from '@/lib/megatrends';
@@ -14,9 +17,18 @@ const openai = new OpenAI({
 // Initialize Gemini client for image generation
 const genai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
-// Simple in-memory cache (use Redis/KV in production)
-const cache = new Map<string, { data: AnalysisResult; timestamp: number }>();
-const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+// Rate limiting: 3 requests per hour per IP
+// Create the ratelimiter only if Redis is configured
+const ratelimit = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+    ? new Ratelimit({
+        redis: Redis.fromEnv(),
+        limiter: Ratelimit.slidingWindow(3, '1 h'),
+        analytics: true,
+        prefix: 'megatrendikone:ratelimit',
+    })
+    : null;
+
+const CACHE_TTL = 24 * 60 * 60; // 24 hours in seconds
 
 /**
  * Generate a future vision image using Gemini's image generation
@@ -74,14 +86,43 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Check cache
-        const cacheKey = `${companyName}-${websiteUrl}`.toLowerCase();
-        const cached = cache.get(cacheKey);
-        if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-            return NextResponse.json<AnalysisResponse>({
-                success: true,
-                data: cached.data,
-            });
+        // Rate limiting check (if configured)
+        if (ratelimit) {
+            const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+            const { success, limit, remaining, reset } = await ratelimit.limit(ip);
+
+            if (!success) {
+                return NextResponse.json<AnalysisResponse>(
+                    {
+                        success: false,
+                        error: `Liikaa pyyntöjä. Voit analysoida ${limit} organisaatiota tunnissa. Yritä uudelleen ${Math.ceil((reset - Date.now()) / 60000)} minuutin kuluttua.`
+                    },
+                    {
+                        status: 429,
+                        headers: {
+                            'X-RateLimit-Limit': limit.toString(),
+                            'X-RateLimit-Remaining': remaining.toString(),
+                            'X-RateLimit-Reset': new Date(reset).toISOString(),
+                        }
+                    }
+                );
+            }
+        }
+
+        // Check distributed cache (Vercel KV)
+        const cacheKey = `analysis:${companyName}-${websiteUrl}`.toLowerCase();
+        try {
+            const cached = await kv.get<AnalysisResult>(cacheKey);
+            if (cached) {
+                console.log('Cache hit for:', cacheKey);
+                return NextResponse.json<AnalysisResponse>({
+                    success: true,
+                    data: cached,
+                });
+            }
+        } catch (cacheError) {
+            console.warn('Cache read error:', cacheError);
+            // Continue without cache if KV is not available
         }
 
         // Scrape website content
@@ -136,8 +177,14 @@ export async function POST(request: NextRequest) {
             futureImageUrl,
         };
 
-        // Cache result
-        cache.set(cacheKey, { data: result, timestamp: Date.now() });
+        // Cache result in Vercel KV with 24hr TTL
+        try {
+            await kv.set(cacheKey, result, { ex: CACHE_TTL });
+            console.log('Cached result for:', cacheKey);
+        } catch (cacheError) {
+            console.warn('Cache write error:', cacheError);
+            // Continue without caching if KV is not available
+        }
 
         return NextResponse.json<AnalysisResponse>({
             success: true,
@@ -146,6 +193,19 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         console.error('Analysis error:', error);
+
+        // Send to Sentry in production
+        if (process.env.NODE_ENV === 'production') {
+            const Sentry = await import('@sentry/nextjs');
+            Sentry.captureException(error, {
+                tags: {
+                    endpoint: 'analyze',
+                },
+                extra: {
+                    companyName: (error as any).companyName,
+                },
+            });
+        }
 
         const errorMessage = error instanceof Error
             ? error.message

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import "./globals.css";
 
 const sora = Sora({
@@ -44,7 +45,9 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${dmSans.variable} antialiased`}
       >
-        {children}
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
         <Analytics />
       </body>
     </html>
