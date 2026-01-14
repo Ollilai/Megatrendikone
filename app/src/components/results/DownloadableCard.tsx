@@ -131,6 +131,7 @@ export const DownloadableCardBack = forwardRef<HTMLDivElement, DownloadableCardP
                             <img
                                 src={data.futureImageUrl}
                                 alt={`${data.company.name} tulevaisuudessa`}
+                                crossOrigin="anonymous"
                                 style={{
                                     width: '100%',
                                     height: '100%',
