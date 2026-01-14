@@ -36,6 +36,7 @@ export function FlipCard({ data }: FlipCardProps) {
     };
 
     const companyInitial = data.company.name.charAt(0).toUpperCase();
+    const logoUrl = data.company.logoUrl;
 
     return (
         <div className="relative w-full max-w-md mx-auto" style={{ perspective: '1000px' }}>
@@ -100,8 +101,12 @@ export function FlipCard({ data }: FlipCardProps) {
                                 <div className="text-center mb-3">
                                     <p className="text-primary-400 text-xs font-bold tracking-[0.2em] mb-2 uppercase">Tulevaisuuskortti 2026</p>
                                     <div className="flex items-center justify-center gap-3">
-                                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-xl font-bold shadow-lg">
-                                            {companyInitial}
+                                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-xl font-bold shadow-lg overflow-hidden">
+                                            {logoUrl ? (
+                                                <img src={logoUrl} alt="" className="w-full h-full object-contain p-1" />
+                                            ) : (
+                                                companyInitial
+                                            )}
                                         </div>
                                         <div className="text-left">
                                             <h2 className="text-lg font-bold text-white leading-tight">{data.company.name}</h2>
@@ -115,27 +120,20 @@ export function FlipCard({ data }: FlipCardProps) {
 
                                 {/* Top opportunity - equal weight */}
                                 <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-4 mb-4">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-xl">🎯</span>
-                                        <span className="text-xs font-bold text-teal-400 uppercase tracking-wide">#1 Mahdollisuus</span>
-                                    </div>
+                                    <span className="text-xs font-bold text-teal-400 uppercase tracking-wide">Keskeinen mahdollisuus</span>
                                     <p className="text-base font-semibold text-white mb-2">{data.topOpportunity.title}</p>
                                     <p className="text-sm text-slate-300 leading-relaxed">{data.topOpportunity.description}</p>
                                 </div>
 
                                 {/* Wild card - equal weight */}
                                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-xl">⚠️</span>
-                                        <span className="text-xs font-bold text-amber-400 uppercase tracking-wide">Villi Kortti</span>
-                                    </div>
+                                    <span className="text-xs font-bold text-amber-400 uppercase tracking-wide">Yllättävä uhka</span>
                                     <p className="text-base font-semibold text-white mb-2">{data.wildCard.title}</p>
                                     <p className="text-sm text-slate-300 leading-relaxed">{data.wildCard.description}</p>
                                 </div>
 
-                                {/* Footer */}
                                 <div className="mt-3 text-center text-xs text-slate-500">
-                                    megatrendikone.fi
+                                    megatrendikone.vercel.app
                                 </div>
                             </div>
                         </div>
@@ -175,19 +173,23 @@ export function FlipCard({ data }: FlipCardProps) {
                             {/* Text overlay at bottom */}
                             <div className="p-6 bg-slate-900/95 backdrop-blur-sm">
                                 <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-lg font-bold">
-                                        {companyInitial}
+                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-lg font-bold overflow-hidden">
+                                        {logoUrl ? (
+                                            <img src={logoUrl} alt="" className="w-full h-full object-contain p-1" />
+                                        ) : (
+                                            companyInitial
+                                        )}
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-bold text-white">{data.company.name}</h3>
-                                        <p className="text-xs text-slate-400">Tulevaisuusvisio 2026</p>
+                                        <p className="text-xs text-slate-400">Tulevaisuuskuva 2026</p>
                                     </div>
                                 </div>
                                 <p className="text-sm text-slate-300">
                                     {data.topOpportunity.title}
                                 </p>
                                 <p className="text-xs text-slate-500 mt-2">
-                                    megatrendikone.fi
+                                    megatrendikone.vercel.app
                                 </p>
                             </div>
                         </div>

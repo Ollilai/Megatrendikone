@@ -1,15 +1,15 @@
 // Megatrend types and data utilities
 
-export interface MegatrendScore {
-  score: number;
-  reasoning: string;
+export interface MegatrendAnalysis {
+  subtitle: string;
+  analysis: string;
 }
 
-export interface MegatrendScores {
-  teknologia: MegatrendScore;
-  luonto: MegatrendScore;
-  ihmiset: MegatrendScore;
-  valta: MegatrendScore;
+export interface MegatrendAnalysisMap {
+  teknologia: MegatrendAnalysis;
+  luonto: MegatrendAnalysis;
+  ihmiset: MegatrendAnalysis;
+  valta: MegatrendAnalysis;
 }
 
 export interface TopOpportunity {
@@ -33,12 +33,17 @@ export interface CompanyInfo {
   logoUrl?: string;
 }
 
+export interface SocialContract {
+  role: string;
+}
+
 export interface AnalysisResult {
   company: CompanyInfo;
-  megatrendScores: MegatrendScores;
+  megatrendAnalysis: MegatrendAnalysisMap;
   topOpportunity: TopOpportunity;
   wildCard: WildCard;
   insights: string[];
+  socialContract: SocialContract;
   generatedAt: string;
   futureImageUrl?: string; // AI-generated future vision image
 }

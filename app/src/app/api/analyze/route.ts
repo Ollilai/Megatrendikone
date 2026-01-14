@@ -27,12 +27,14 @@ async function generateFutureImage(
     topOpportunity: string
 ): Promise<string | undefined> {
     try {
-        const prompt = `Create a realistic, professional photograph representing ${companyName} thriving in the future.
+        const prompt = `Create a realistic, professional photograph representing ${companyName} thriving in Finland in the near future.
 Context: ${industry} sector, succeeding in: ${topOpportunity}.
-Style: High-quality editorial photography, natural lighting, hopeful and optimistic mood.
-The image should feel grounded and believable, like a photo from a business magazine 5 years from now.
+Location: FINLAND - show Finnish environment: Nordic architecture, Finnish forests (pine, birch), lakes, or modern Finnish cities like Helsinki or Tampere.
+People: If showing people, they should look Finnish/Nordic - diverse but realistic for Finland.
+Style: High-quality editorial photography, natural Nordic lighting, hopeful and optimistic mood.
+The image should feel grounded and believable, like a photo from a Finnish business magazine 5 years from now.
 Include subtle hints of progress and innovation - modern but not sci-fi.
-Color palette: Natural tones with subtle teal and warm accents.
+Color palette: Natural Nordic tones, clean Scandinavian aesthetic with subtle teal and warm accents.
 No text, logos, watermarks, or words in the image.
 Photorealistic, documentary style, shallow depth of field.`;
 

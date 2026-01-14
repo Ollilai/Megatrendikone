@@ -9,7 +9,7 @@ interface DownloadableCardProps {
 
 export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCardProps>(
     function DownloadableCardFront({ data }, ref) {
-        const companyInitial = data.company.name.charAt(0).toUpperCase();
+        // Note: We don't use logoUrl in downloadable cards due to CORS issues with html-to-image
 
         return (
             <div
@@ -45,31 +45,11 @@ export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCard
                     <div style={{ position: 'relative', zIndex: 1, padding: '48px', height: '100%', display: 'flex', flexDirection: 'column' }}>
                         {/* Header */}
                         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                            <p style={{ color: '#14b8a6', fontSize: '16px', fontWeight: 'bold', letterSpacing: '0.2em', marginBottom: '20px', textTransform: 'uppercase' }}>
+                            <p style={{ color: '#14b8a6', fontSize: '16px', fontWeight: 'bold', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase' }}>
                                 Tulevaisuuskortti 2026
                             </p>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '24px' }}>
-                                <div
-                                    style={{
-                                        width: '80px',
-                                        height: '80px',
-                                        borderRadius: '16px',
-                                        background: 'linear-gradient(135deg, #14b8a6, #3b82f6)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        fontSize: '36px',
-                                        fontWeight: 'bold',
-                                        color: 'white',
-                                    }}
-                                >
-                                    {companyInitial}
-                                </div>
-                                <div style={{ textAlign: 'left' }}>
-                                    <h2 style={{ fontSize: '32px', fontWeight: 'bold', color: 'white', margin: 0 }}>{data.company.name}</h2>
-                                    <p style={{ fontSize: '18px', color: '#94a3b8', margin: '4px 0 0' }}>{data.company.industry}</p>
-                                </div>
-                            </div>
+                            <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: 'white', margin: '0 0 8px' }}>{data.company.name}</h2>
+                            <p style={{ fontSize: '18px', color: '#94a3b8', margin: 0 }}>{data.company.industry}</p>
                         </div>
 
                         {/* Divider */}
@@ -83,14 +63,10 @@ export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCard
                                 borderRadius: '20px',
                                 padding: '32px',
                                 marginBottom: '32px',
-                                flex: 1,
-                                display: 'flex',
-                                flexDirection: 'column',
                             }}
                         >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                                <span style={{ fontSize: '36px' }}>🎯</span>
-                                <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#14b8a6', textTransform: 'uppercase', letterSpacing: '0.15em' }}>#1 Mahdollisuus</span>
+                            <div style={{ marginBottom: '20px' }}>
+                                <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#14b8a6', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Keskeinen mahdollisuus</span>
                             </div>
                             <p style={{ fontSize: '28px', fontWeight: '600', color: 'white', margin: '0 0 16px', lineHeight: 1.3 }}>{data.topOpportunity.title}</p>
                             <p style={{ fontSize: '18px', color: '#cbd5e1', margin: 0, lineHeight: 1.7 }}>{data.topOpportunity.description}</p>
@@ -103,14 +79,10 @@ export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCard
                                 border: '1px solid rgba(245, 158, 11, 0.2)',
                                 borderRadius: '20px',
                                 padding: '32px',
-                                flex: 1,
-                                display: 'flex',
-                                flexDirection: 'column',
                             }}
                         >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                                <span style={{ fontSize: '36px' }}>⚠️</span>
-                                <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Villi Kortti</span>
+                            <div style={{ marginBottom: '20px' }}>
+                                <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Yllättävä uhka</span>
                             </div>
                             <p style={{ fontSize: '28px', fontWeight: '600', color: 'white', margin: '0 0 16px', lineHeight: 1.3 }}>{data.wildCard.title}</p>
                             <p style={{ fontSize: '18px', color: '#cbd5e1', margin: 0, lineHeight: 1.7 }}>{data.wildCard.description}</p>
@@ -118,7 +90,7 @@ export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCard
 
                         {/* Footer */}
                         <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '14px', color: '#64748b' }}>
-                            megatrendikone.fi
+                            megatrendikone.vercel.app
                         </div>
                     </div>
                 </div>
@@ -129,7 +101,6 @@ export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCard
 
 export const DownloadableCardBack = forwardRef<HTMLDivElement, DownloadableCardProps>(
     function DownloadableCardBack({ data }, ref) {
-        const companyInitial = data.company.name.charAt(0).toUpperCase();
 
         return (
             <div
@@ -196,33 +167,15 @@ export const DownloadableCardBack = forwardRef<HTMLDivElement, DownloadableCardP
 
                     {/* Text overlay at bottom */}
                     <div style={{ padding: '48px', backgroundColor: 'rgba(30, 41, 59, 0.98)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '16px' }}>
-                            <div
-                                style={{
-                                    width: '60px',
-                                    height: '60px',
-                                    borderRadius: '12px',
-                                    background: 'linear-gradient(135deg, #14b8a6, #3b82f6)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '28px',
-                                    fontWeight: 'bold',
-                                    color: 'white',
-                                }}
-                            >
-                                {companyInitial}
-                            </div>
-                            <div>
-                                <h3 style={{ fontSize: '28px', fontWeight: 'bold', color: 'white', margin: 0 }}>{data.company.name}</h3>
-                                <p style={{ fontSize: '14px', color: '#94a3b8', margin: '4px 0 0' }}>Tulevaisuusvisio 2026</p>
-                            </div>
+                        <div style={{ marginBottom: '16px' }}>
+                            <h3 style={{ fontSize: '28px', fontWeight: 'bold', color: 'white', margin: '0 0 4px' }}>{data.company.name}</h3>
+                            <p style={{ fontSize: '14px', color: '#94a3b8', margin: 0 }}>Tulevaisuuskuva 2026</p>
                         </div>
                         <p style={{ fontSize: '20px', color: '#e2e8f0', margin: '0 0 16px' }}>
                             {data.topOpportunity.title}
                         </p>
                         <p style={{ fontSize: '14px', color: '#64748b', margin: 0 }}>
-                            megatrendikone.fi
+                            megatrendikone.vercel.app
                         </p>
                     </div>
                 </div>

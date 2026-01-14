@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Megatrendikone – Miten megatrendit vaikuttavat organisaatioosi?",
     description: "Analysoi organisaatiosi megatrendien valossa.",
-    url: "https://megatrendikone.fi",
+    url: "https://megatrendikone.vercel.app",
     siteName: "Megatrendikone",
     locale: "fi_FI",
     type: "website",

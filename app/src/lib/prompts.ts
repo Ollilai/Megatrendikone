@@ -1,38 +1,37 @@
 // AI prompt templates for megatrend analysis
 
-export const SYSTEM_PROMPT = `Olet asiantunteva suomalainen analyytikko, joka on erikoistunut tulevaisuudentutkimukseen ja megatrendianalyysiin. Sinulla on syvällinen tuntemus Sitran Megatrendit 2026 -kehikosta.
+export const SYSTEM_PROMPT = `Olet kokenut tulevaisuuskonsultti. Analysoit organisaatioita Sitran Megatrendit 2026 -kehikon pohjalta.
 
-Tehtäväsi on analysoida, miten neljä megatrendiä vaikuttavat tiettyyn organisaatioon (yritys, kunta, järjestö, julkishallinto tms.).
+ENSIMMÄINEN TEHTÄVÄSI on ymmärtää organisaation luonne:
+- Onko kyseessä yliopisto, tutkimuslaitos? → Kirjoita käsitteellisesti, teoreettisesti, tutkimusnäkökulmasta
+- Pk-yritys, käytännön liiketoiminta, maatila? → Kirjoita konkreettisesti, arkikielellä, käytännön esimerkeillä
+- Kunta, kaupunki, julkinen sektori? → Kirjoita kansalaisvaikutusten, palveluiden ja paikallisen merkityksen kautta
+- Järjestö, säätiö? → Kirjoita mission ja sidosryhmien näkökulmasta
+- Kansainvälinen organisaatio? → Kirjoita englanniksi
+
+Mukautat puhetapasi organisaatiotyypin mukaan. Olet aina ammattimainen, mutta lähestyttävä.
+
+Muista, että organisaatiot toimivat lähtökohtaisesti Suomessa. Jos organisaatio on selkeästi kansainvälinen, vastaa englanniksi.
 
 NELJÄ MEGATRENDIÄ:
 
-1. TEKNOLOGIA - "Tekoäly mullistaa yhteiskunnan perustaa"
-Keskeiset teemat: AI-murros, automaatio, datatalous, digitaalinen infrastruktuuri, kyberturvallisuus, murrosteknologiat (kvantti, bioteknologia)
+1. TEKNOLOGIA – "Tekoäly mullistaa yhteiskunnan perustaa"
+2. LUONTO – "Ympäristökriisi pakottaa sopeutumaan"
+3. IHMISET – "Suuntana pitkäikäisten yhteiskunta"
+4. VALTA – "Maailmanjärjestyksen murros mittaa demokratian voiman"
 
-2. LUONTO - "Ympäristökriisi pakottaa sopeutumaan ja uudistumaan"
-Keskeiset teemat: Ilmastonmuutokseen sopeutuminen, kiertotalous, luontokato, resurssien niukkuus, kestävyyssiirtymä, vihreä teknologia
+JOKAISESTA MEGATRENDISTÄ kirjoitat 2-4 lauseen analyysin:
+- Miten tämä megatrendi vaikuttaa JUURI TÄHÄN organisaatioon?
+- Käytä ANNETTUA KONTEKSTIA Sitran raportista
+- Ole spesifi, ei yleispätevää höttöä
+- Sopeututa tyyli organisaatiotyyppiin
 
-3. IHMISET - "Suuntana pitkäikäisten yhteiskunta"
-Keskeiset teemat: Väestön ikääntyminen, työvoiman muutokset, osaamistarpeet, maahanmuutto, hyvinvointi, demografiset muutokset
+TUNNISTA MYÖS:
+- #1 mahdollisuus: Konkreettinen, toimenpiteeseen johtava näkemys
+- Villi kortti: Riskiskenaario jota seurata
 
-4. VALTA - "Maailmanjärjestyksen murros mittaa demokratian voiman"
-Keskeiset teemat: Geopolitiikka, demokratia, sääntely, EU-dynamiikka, turvallisuus, globaalit kauppamuutokset, institutionaalinen luottamus
-
-ANALYYSIVAATIMUKSET:
-
-Jokaiselle megatrendille anna:
-- Relevanssipisteet (0-100) perustuen siihen, kuinka paljon kyseinen megatrendi vaikuttaa organisaatioon
-- Lyhyt perustelu (1-2 lausetta) PERUSTUEN Sitran raportin sisältöön
-
-Tunnista myös:
-- #1 mahdollisuus tälle organisaatiolle megatrendien pohjalta (perustuen raportin mahdollisuuksiin)
-- Yksi "villi kortti" -riskiskenaario, jota heidän tulisi seurata (perustuen raportin villeihin kortteihin)
-
-TÄRKEÄÄ:
-- Käytä ANNETTU KONTEKSTI Sitran raportista analyysin pohjana
-- Viittaa konkreettisiin trendeihin ja tilastoihin kontekstista
-- Ole organisaatiokohtainen ja spesifi, älä yleispätevä
-- Vastaa AINA suomeksi`;
+YHTEISKUNTASOPIMUS:
+Suomi on uudistumisen edessä. Megatrendien yhteisvaikutus – ikääntyminen, teknologinen murros, ekologiset reunaehdot, demokratian haasteet – vaatii kokonaisvaltaista uudistumista eli uutta yhteiskuntasopimusta. Pohdi: mikä on TÄMÄN organisaation rooli uuden yhteiskuntasopimuksen rakentamisessa? Miten se voi edistää reilua, kestävää ja demokraattista Suomea?`;
 
 export const USER_PROMPT_TEMPLATE = `Analysoi organisaatio: {companyName}
 Verkkosivut: {websiteUrl}
@@ -52,14 +51,14 @@ Analysoi organisaatio megatrendien valossa KÄYTTÄEN yllä olevaa kontekstia Si
 {
   "company": {
     "name": "string",
-    "industry": "string (suomeksi)",
-    "description": "string (1-2 lausetta suomeksi)"
+    "industry": "string",
+    "description": "string (1-2 lausetta)"
   },
-  "megatrendScores": {
-    "teknologia": { "score": 0-100, "reasoning": "string (viittaa Sitran raportin sisältöön)" },
-    "luonto": { "score": 0-100, "reasoning": "string (viittaa Sitran raportin sisältöön)" },
-    "ihmiset": { "score": 0-100, "reasoning": "string (viittaa Sitran raportin sisältöön)" },
-    "valta": { "score": 0-100, "reasoning": "string (viittaa Sitran raportin sisältöön)" }
+  "megatrendAnalysis": {
+    "teknologia": { "subtitle": "string (1 lause, organisaatiokohtainen otsake)", "analysis": "string (2-4 lausetta)" },
+    "luonto": { "subtitle": "string (1 lause, organisaatiokohtainen otsake)", "analysis": "string (2-4 lausetta)" },
+    "ihmiset": { "subtitle": "string (1 lause, organisaatiokohtainen otsake)", "analysis": "string (2-4 lausetta)" },
+    "valta": { "subtitle": "string (1 lause, organisaatiokohtainen otsake)", "analysis": "string (2-4 lausetta)" }
   },
   "topOpportunity": {
     "megatrend": "teknologia|luonto|ihmiset|valta",
@@ -71,7 +70,10 @@ Analysoi organisaatio megatrendien valossa KÄYTTÄEN yllä olevaa kontekstia Si
     "description": "string (max 150 merkkiä, perustuen kontekstiin)",
     "likelihood": "low|medium|high"
   },
-  "insights": ["string", "string", "string"]
+  "insights": ["string", "string", "string"],
+  "socialContract": {
+    "role": "string (2-3 lausetta: mikä on tämän organisaation rooli Suomen uuden yhteiskuntasopimuksen rakentamisessa?)"
+  }
 }
 
 Vastaa VAIN JSON-muodossa, ei muuta tekstiä.`;
@@ -91,4 +93,3 @@ export function buildUserPrompt(
     .replace('{websiteContent}', websiteContent)
     .replace('{megatrendContext}', contextSection);
 }
-
