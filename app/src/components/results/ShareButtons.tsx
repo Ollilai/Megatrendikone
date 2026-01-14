@@ -102,13 +102,15 @@ export function ShareButtons({ data }: ShareButtonsProps) {
             {/* Using fixed positioning at 0,0 with opacity 0 for better mobile Safari compatibility */}
             <div
                 style={{
-                    position: 'fixed',
+                    position: 'absolute',
                     left: 0,
                     top: 0,
+                    width: '1080px',
+                    height: '1350px',
                     opacity: 0,
                     pointerEvents: 'none',
-                    zIndex: -9999,
-                    visibility: 'hidden',
+                    zIndex: -50,
+                    overflow: 'hidden',
                 }}
                 aria-hidden="true"
             >
