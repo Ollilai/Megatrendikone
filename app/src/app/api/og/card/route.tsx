@@ -8,17 +8,17 @@ const fontData = fetch(
     new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYAZ9hjp-Ek-_EeA.woff', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     try {
         const font = await fontData;
 
-        const { searchParams } = new URL(req.url);
-        const companyName = searchParams.get('companyName') || '';
-        const industry = searchParams.get('industry') || '';
-        const oppTitle = searchParams.get('oppTitle') || '';
-        const oppDesc = searchParams.get('oppDesc') || '';
-        const wildTitle = searchParams.get('wildTitle') || '';
-        const wildDesc = searchParams.get('wildDesc') || '';
+        const body = await req.json();
+        const companyName = body.companyName || '';
+        const industry = body.industry || '';
+        const oppTitle = body.oppTitle || '';
+        const oppDesc = body.oppDesc || '';
+        const wildTitle = body.wildTitle || '';
+        const wildDesc = body.wildDesc || '';
 
         return new ImageResponse(
             (

@@ -15,6 +15,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
 
     const handleShareOrDownload = async (
         url: string,
+        body: Record<string, string>,
         filename: string,
         setLoading: (loading: boolean) => void
     ) => {
@@ -22,7 +23,14 @@ export function ShareButtons({ data }: ShareButtonsProps) {
         setLoading(true);
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error(`Server error: ${response.status} ${errorText}`);
@@ -54,29 +62,31 @@ export function ShareButtons({ data }: ShareButtonsProps) {
     };
 
     const handleDownloadFront = () => {
-        const params = new URLSearchParams({
+        const body = {
             companyName: data.company.name,
             industry: data.company.industry,
             oppTitle: data.topOpportunity.title,
             oppDesc: data.topOpportunity.description,
             wildTitle: data.wildCard.title,
             wildDesc: data.wildCard.description,
-        });
+        };
         handleShareOrDownload(
-            `/api/og/card?${params.toString()}`,
+            '/api/og/card',
+            body,
             `${baseFilename}-tulevaisuuskortti.png`,
             setDownloadingFront
         );
     };
 
     const handleDownloadBack = () => {
-        const params = new URLSearchParams({
+        const body = {
             imageUrl: data.futureImageUrl || '',
             companyName: data.company.name,
             oppTitle: data.topOpportunity.title,
-        });
+        };
         handleShareOrDownload(
-            `/api/og/image?${params.toString()}`,
+            '/api/og/image',
+            body,
             `${baseFilename}-tulevaisuuskuva.png`,
             setDownloadingBack
         );
