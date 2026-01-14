@@ -58,9 +58,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // Enable SWC minification
-  swcMinify: true,
-
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['framer-motion', '@react-pdf/renderer'],
