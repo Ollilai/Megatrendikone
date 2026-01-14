@@ -1,0 +1,13 @@
+# Robots.txt for Megatrendikone
+# https://megatrendikone.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /analyze?
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://megatrendikone.vercel.app/sitemap.xml
