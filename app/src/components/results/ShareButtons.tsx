@@ -23,7 +23,10 @@ export function ShareButtons({ data }: ShareButtonsProps) {
 
         try {
             const response = await fetch(url);
-            if (!response.ok) throw new Error('Generation failed');
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Server error: ${response.status} ${errorText}`);
+            }
 
             const blob = await response.blob();
             const file = new File([blob], filename, { type: 'image/png' });

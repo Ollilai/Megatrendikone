@@ -1,10 +1,17 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs'; // Switch to Node.js for better stability
+
+// Load font
+const fontData = fetch(
+    new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYAZ9hjp-Ek-_EeA.woff', import.meta.url)
+).then((res) => res.arrayBuffer());
 
 export async function GET(req: NextRequest) {
     try {
+        const font = await fontData;
+
         const { searchParams } = new URL(req.url);
         const imageUrl = searchParams.get('imageUrl');
         const companyName = searchParams.get('companyName') || '';
@@ -93,6 +100,13 @@ export async function GET(req: NextRequest) {
             {
                 width: 1080,
                 height: 1350,
+                fonts: [
+                    {
+                        name: 'Inter',
+                        data: font,
+                        style: 'normal',
+                    },
+                ],
             }
         );
     } catch (e: any) {
