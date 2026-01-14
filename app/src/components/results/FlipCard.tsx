@@ -38,7 +38,7 @@ export function FlipCard({ data }: FlipCardProps) {
     const companyInitial = data.company.name.charAt(0).toUpperCase();
 
     return (
-        <div className="relative w-full max-w-lg mx-auto" style={{ perspective: '1000px' }}>
+        <div className="relative w-full max-w-md mx-auto" style={{ perspective: '1000px' }}>
             {/* Screen reader announcement for flip state */}
             <div
                 role="status"
@@ -64,7 +64,7 @@ export function FlipCard({ data }: FlipCardProps) {
                 style={{
                     perspective: '1000px',
                     width: '100%',
-                    aspectRatio: '3/4',
+                    minHeight: '600px',
                 }}
                 onClick={handleFlip}
                 onKeyDown={(e) => {
@@ -75,80 +75,80 @@ export function FlipCard({ data }: FlipCardProps) {
                 }}
             >
                 <motion.div
-                    className="w-full h-full relative"
+                    className="w-full relative"
                     style={{
                         transformStyle: 'preserve-3d',
+                        minHeight: '600px',
                     }}
                     animate={{ rotateY: isFlipped ? 180 : 0 }}
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
                 >
                     {/* Front side - Insights & Wild Card */}
                     <div
-                        className="absolute inset-0 rounded-2xl overflow-hidden"
+                        className="absolute inset-0 rounded-2xl"
                         style={{
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
                         }}
                     >
-                        <div className="w-full h-full bg-slate-900 border border-slate-700/50 rounded-2xl overflow-hidden shadow-2xl relative">
+                        <div className="bg-slate-900 border border-slate-700/50 rounded-2xl shadow-2xl relative">
                             {/* Gradient mesh bg */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-slate-900 to-accent-900/20" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-slate-900 to-accent-900/20 rounded-2xl" />
 
-                            <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
+                            <div className="relative z-10 p-5">
                                 {/* Header */}
-                                <div className="text-center mb-4">
-                                    <p className="text-primary-400 text-xs font-bold tracking-[0.2em] mb-3 uppercase">Tulevaisuuskortti 2026</p>
-                                    <div className="flex items-center justify-center gap-4 mb-2">
-                                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-2xl font-bold shadow-lg">
+                                <div className="text-center mb-3">
+                                    <p className="text-primary-400 text-xs font-bold tracking-[0.2em] mb-2 uppercase">Tulevaisuuskortti 2026</p>
+                                    <div className="flex items-center justify-center gap-3">
+                                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center text-xl font-bold shadow-lg">
                                             {companyInitial}
                                         </div>
                                         <div className="text-left">
-                                            <h2 className="text-xl font-bold text-white leading-tight">{data.company.name}</h2>
-                                            <p className="text-sm text-slate-400">{data.company.industry}</p>
+                                            <h2 className="text-lg font-bold text-white leading-tight">{data.company.name}</h2>
+                                            <p className="text-xs text-slate-400">{data.company.industry}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Divider */}
-                                <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-4" />
+                                <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-3" />
 
                                 {/* Top opportunity highlight */}
-                                <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-4 mb-4">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-xl">🎯</span>
+                                <div className="bg-teal-500/10 border border-teal-500/20 rounded-xl p-3 mb-3">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className="text-lg">🎯</span>
                                         <span className="text-xs font-bold text-teal-400 uppercase tracking-wide">#1 Mahdollisuus</span>
                                     </div>
-                                    <p className="text-base font-semibold text-white">{data.topOpportunity.title}</p>
-                                    <p className="text-sm text-slate-300 mt-1">{data.topOpportunity.description}</p>
+                                    <p className="text-sm font-semibold text-white">{data.topOpportunity.title}</p>
                                 </div>
 
                                 {/* Key insights */}
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-lg">💡</span>
+                                <div className="mb-3">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-base">💡</span>
                                         <span className="text-xs font-bold text-slate-300 uppercase tracking-wide">Keskeiset havainnot</span>
                                     </div>
                                     <ul className="space-y-2">
                                         {data.insights.slice(0, 3).map((insight, i) => (
-                                            <li key={i} className="flex items-start gap-2 text-sm text-slate-300 bg-slate-800/50 rounded-lg p-3">
+                                            <li key={i} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-800/50 rounded-lg p-2">
                                                 <span className="text-teal-400 mt-0.5 flex-shrink-0">•</span>
-                                                <span className="leading-relaxed">{insight}</span>
+                                                <span className="leading-relaxed line-clamp-3">{insight}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
                                 {/* Wild card - smaller */}
-                                <div className="mt-4 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                                <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
                                     <div className="flex items-center gap-2 mb-1">
                                         <span className="text-sm">⚠️</span>
                                         <span className="text-xs font-bold text-amber-400">VILLI KORTTI</span>
                                     </div>
-                                    <p className="text-sm font-medium text-white">{data.wildCard.title}</p>
+                                    <p className="text-xs font-medium text-white">{data.wildCard.title}</p>
                                 </div>
 
                                 {/* Footer */}
-                                <div className="mt-4 text-center text-xs text-slate-500">
+                                <div className="mt-3 text-center text-xs text-slate-500">
                                     megatrendikone.fi
                                 </div>
                             </div>
