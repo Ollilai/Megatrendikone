@@ -23,10 +23,15 @@ export function ShareButtons({ data }: ShareButtonsProps) {
 
         try {
             if (frontRef.current) {
+                // Small delay to ensure mobile Safari has rendered the card
+                await new Promise(resolve => setTimeout(resolve, 100));
+
                 const dataUrl = await toPng(frontRef.current, {
                     quality: 0.95,
                     pixelRatio: 2,
                     backgroundColor: '#0f172a',
+                    skipFonts: true, // Avoid font loading issues on mobile
+                    cacheBust: true, // Better mobile compatibility
                 });
                 const link = document.createElement('a');
                 link.download = `${baseFilename}-tulevaisuuskortti.png`;
@@ -47,10 +52,29 @@ export function ShareButtons({ data }: ShareButtonsProps) {
 
         try {
             if (backRef.current) {
+                // Critical: Wait for images to load before capturing on mobile
+                const images = backRef.current.querySelectorAll('img');
+                const imageLoadPromises = Array.from(images).map(img => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise((resolve, reject) => {
+                        img.onload = () => resolve();
+                        img.onerror = () => reject(new Error('Image failed to load'));
+                        // Timeout after 10 seconds
+                        setTimeout(() => resolve(), 10000);
+                    });
+                });
+
+                await Promise.all(imageLoadPromises);
+
+                // Small delay for mobile Safari to finish rendering
+                await new Promise(resolve => setTimeout(resolve, 300));
+
                 const dataUrl = await toPng(backRef.current, {
                     quality: 0.95,
                     pixelRatio: 2,
                     backgroundColor: '#0f172a',
+                    skipFonts: true, // Avoid font loading issues on mobile
+                    cacheBust: true, // Better mobile compatibility
                 });
                 const link = document.createElement('a');
                 link.download = `${baseFilename}-tulevaisuuskuva.png`;
@@ -75,13 +99,16 @@ export function ShareButtons({ data }: ShareButtonsProps) {
     return (
         <>
             {/* Hidden downloadable cards for image generation */}
+            {/* Using fixed positioning at 0,0 with opacity 0 for better mobile Safari compatibility */}
             <div
                 style={{
-                    position: 'absolute',
-                    left: '-9999px',
+                    position: 'fixed',
+                    left: 0,
                     top: 0,
                     opacity: 0,
                     pointerEvents: 'none',
+                    zIndex: -9999,
+                    visibility: 'hidden',
                 }}
                 aria-hidden="true"
             >
