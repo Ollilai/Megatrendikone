@@ -10,12 +10,15 @@ import { SYSTEM_PROMPT, buildUserPrompt } from '@/lib/prompts';
 import { AnalysisResult, AnalysisResponse, getCompanyLogoUrl } from '@/lib/megatrends';
 import { searchRelevantChunks, formatChunksAsContext } from '@/lib/megatrends-embeddings';
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+// Lazy initialize clients to avoid build-time errors
+// During build, Next.js analyzes routes but doesn't need actual API keys
+const getOpenAIClient = () => new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || 'sk-build-time-placeholder',
 });
 
-// Initialize Gemini client for image generation
-const genai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+const getGeminiClient = () => new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY || 'build-time-placeholder'
+});
 
 // Rate limiting: 3 requests per hour per IP
 // Create the ratelimiter only if Redis is configured
@@ -51,7 +54,7 @@ No text, logos, watermarks, or words in the image.
 Photorealistic, documentary style, shallow depth of field.`;
 
         // Using the correct model name per Google docs
-        const response = await genai.models.generateContent({
+        const response = await getGeminiClient().models.generateContent({
             model: 'gemini-2.5-flash-image',
             contents: prompt,
         });
@@ -136,6 +139,7 @@ export async function POST(request: NextRequest) {
         console.log(`Found ${relevantChunks.length} relevant chunks for RAG context`);
 
         // Call OpenAI API for text analysis using GPT-5.1 with deep reasoning
+        const openai = getOpenAIClient();
         const completion = await openai.chat.completions.create({
             model: 'gpt-5.1',
             messages: [

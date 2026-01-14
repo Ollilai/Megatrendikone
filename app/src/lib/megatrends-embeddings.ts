@@ -11,7 +11,7 @@ let _openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
     if (!_openai) {
         _openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
+            apiKey: process.env.OPENAI_API_KEY || 'sk-build-time-placeholder',
         });
     }
     return _openai;
