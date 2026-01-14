@@ -8,6 +8,7 @@ import { AnalysisProgress } from '@/components/loading/AnalysisProgress';
 import { FlipCard } from '@/components/results/FlipCard';
 import { ShareButtons } from '@/components/results/ShareButtons';
 import { type AnalysisResult, MEGATRENDS, type MegatrendKey, getCompanyLogoUrl } from '@/lib/megatrends';
+import { Header } from '@/components/Header';
 
 /**
  * Validates that the analysis result has all required fields
@@ -147,7 +148,9 @@ function AnalyzeContent() {
     const megatrendKeys = Object.keys(MEGATRENDS) as MegatrendKey[];
 
     return (
-        <div className="min-h-screen bg-slate-950 noise text-slate-50">
+        <>
+            <Header />
+            <div className="min-h-screen bg-slate-950 noise text-slate-50">
             {/* Background decoration */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-[100px] animate-pulse-soft" />
@@ -238,13 +241,21 @@ function AnalyzeContent() {
                         transition={{ delay: 0.5 }}
                         className="bg-gradient-to-br from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-2xl p-6 md:p-8 mb-8"
                     >
-                        <h2 className="text-xl font-bold text-white mb-4">Tarvitsetko käytännönläheistä tekoälykonsulttia?</h2>
-                        <p className="text-slate-300 leading-relaxed mb-6">
-                            Megatrendikoneen on rakentanut <strong className="text-white">Olli Laitinen</strong>,
-                            tekoälykonsultti, joka auttaa organisaatioita hyödyntämään tekoälyä käytännönläheisesti
-                            ja strategisesti – yhdistäen liiketoimintatarpeet, modernin teknologian ja toteutuksen,
-                            joka tuottaa hyötyä arjessa.
-                        </p>
+                        <h2 className="text-xl font-bold text-white mb-4">Moi!</h2>
+                        <div className="text-slate-300 leading-relaxed space-y-3 mb-6">
+                            <p>
+                                Kun Sitra julkaisi vuoden 2026 megatrendit tekoäly-ystävällisessä muodossa, innostuin tekemään
+                                niistä tämän kevyen äpin. Toivottavasti se tuo Sitran megatrendit lähemmäksi sinun
+                                organisaatiotasi ja on sinulle hyödyksi.
+                            </p>
+                            <p>
+                                Jos tarvitset käytännönläheistä tekoälykonsulttia rakentamaan sillan organisaation toiminnan
+                                ja tekoälyn välillä, ole yhteydessä.
+                            </p>
+                            <p className="text-white font-medium">
+                                Terveisin, Olli Laitinen
+                            </p>
+                        </div>
                         <div className="flex flex-wrap gap-4">
                             <a
                                 href="https://ollilaitinen.com"
@@ -291,6 +302,7 @@ function AnalyzeContent() {
                 </motion.div>
             </div>
         </div>
+        </>
     );
 }
 

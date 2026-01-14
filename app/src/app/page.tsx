@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Header } from '@/components/Header';
 
 export default function Home() {
   const [companyName, setCompanyName] = useState('');
@@ -38,7 +39,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden flex flex-col items-center justify-center px-4 noise">
+    <>
+      <Header />
+      <div className="min-h-screen bg-slate-950 relative overflow-hidden flex flex-col items-center justify-center px-4 noise">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
@@ -129,5 +132,6 @@ export default function Home() {
         </p>
       </motion.div>
     </div>
+    </>
   );
 }

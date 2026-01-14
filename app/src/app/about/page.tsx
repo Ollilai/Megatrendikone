@@ -2,12 +2,15 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Header } from '@/components/Header';
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-slate-950 noise text-slate-50">
-            {/* Background decoration */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <>
+            <Header />
+            <div className="min-h-screen bg-slate-950 noise text-slate-50">
+                {/* Background decoration */}
+                <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-[100px] animate-pulse-soft" />
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/5 rounded-full blur-[100px]" />
             </div>
@@ -69,6 +72,116 @@ export default function AboutPage() {
                         </ul>
                     </section>
 
+                    {/* How it works - Transparency */}
+                    <section className="glass rounded-2xl p-6 md:p-8 mb-8">
+                        <h2 className="text-2xl font-bold text-white mb-4">Miten Megatrendikone toimii?</h2>
+                        <p className="text-slate-300 leading-relaxed mb-6">
+                            Uskon läpinäkyvyyteen tekoälytyökalujen kanssa. Tässä kuvaus siitä, miten Megatrendikone
+                            toimii teknisesti ja mitä tekoälymallit tekevät taustalla.
+                        </p>
+
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                                    <span className="text-teal-400">1.</span> Organisaatiosi tietojen keräys
+                                </h3>
+                                <p className="text-slate-300 leading-relaxed ml-6">
+                                    Kun syötät verkkosivustosi osoitteen, järjestelmä hakee kotisivun sisällön ja
+                                    analysoi sitä selvittääkseen, mitä organisaatiosi tekee, mikä on toimialasi ja
+                                    mitkä ovat keskeiset toimintasi. Tämä auttaa tekemään analyysin relevantiksi juuri sinulle.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                                    <span className="text-teal-400">2.</span> Megatrendi-analyysi (GPT-5.1 o1)
+                                </h3>
+                                <p className="text-slate-300 leading-relaxed ml-6 mb-3">
+                                    Järjestelmä lähettää organisaatiosi tiedot ja Sitran megatrendit OpenAI:n GPT-5.1 o1 -mallille.
+                                    Tämä on tekoälymalli, joka on suunniteltu erityisesti syvälliseen päättelyyn ja monimutkaisten
+                                    yhteyksien hahmottamiseen.
+                                </p>
+                                <div className="ml-6 bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                                    <p className="text-sm font-mono text-slate-300 mb-2">Promptin rakenne:</p>
+                                    <ul className="text-sm text-slate-400 space-y-1 ml-4">
+                                        <li>• Organisaation perustiedot ja toiminta</li>
+                                        <li>• Sitran 4 megatrendiä täydellä kuvauksella</li>
+                                        <li>• Ohjeet analyysin laatimiseen (mahdollisuudet, uhat, yhteiskuntasopimus)</li>
+                                        <li>• Vaatimus käytännönläheisyydelle ja konkreettisuudelle</li>
+                                    </ul>
+                                </div>
+                                <p className="text-slate-300 leading-relaxed ml-6 mt-3">
+                                    Malli ei "muista" mitään aiemmista analyyseista – jokainen pyyntö on itsenäinen,
+                                    ja tietosi eivät käytetä mallin kouluttamiseen.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                                    <span className="text-teal-400">3.</span> Tulevaisuuskuvan generointi (Gemini 2.5 Flash Image)
+                                </h3>
+                                <p className="text-slate-300 leading-relaxed ml-6 mb-3">
+                                    Rinnakkain analyysin kanssa, järjestelmä pyytää Googlen Gemini 2.5 Flash Image -mallia
+                                    generoimaan kuvan organisaatiostasi menestymässä tulevaisuudessa. Promptissa määritellään:
+                                </p>
+                                <div className="ml-6 bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                                    <p className="text-sm font-mono text-slate-300 mb-2">Kuva-promptin elementit:</p>
+                                    <ul className="text-sm text-slate-400 space-y-1 ml-4">
+                                        <li>• Organisaation nimi ja toimiala</li>
+                                        <li>• Keskeinen mahdollisuus megatrendeistä</li>
+                                        <li>• Suomalainen konteksti ja ympäristö</li>
+                                        <li>• Realistinen, toiveikkaan positiivinen tyyli</li>
+                                        <li>• Korkealaatuinen valokuvamainen estetiikka</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                                    <span className="text-teal-400">4.</span> Tulosten esittäminen
+                                </h3>
+                                <p className="text-slate-300 leading-relaxed ml-6">
+                                    Saat analyysin, jossa on keskeinen mahdollisuus, yllättävä uhka, rooli yhteiskuntasopimuksessa
+                                    sekä yksityiskohtaiset oivallukset jokaisesta neljästä megatrendistä. Voit jakaa tulokset
+                                    ja ladata ne kuvakorttien muodossa.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                                    <span className="text-teal-400">📊</span> Tekninen arkkitehtuuri
+                                </h3>
+                                <div className="ml-6 space-y-2">
+                                    <p className="text-slate-300"><strong>Frontend:</strong> Next.js 15, React, TypeScript, Tailwind CSS</p>
+                                    <p className="text-slate-300"><strong>Backend:</strong> Next.js API Routes (palvelinkomponentit)</p>
+                                    <p className="text-slate-300"><strong>Tekoälymallit:</strong> OpenAI GPT-5.1 o1 (analyysi), Google Gemini 2.5 Flash Image (kuvat)</p>
+                                    <p className="text-slate-300"><strong>Hosting:</strong> Vercel (Edge Network)</p>
+                                    <p className="text-slate-300"><strong>Välimuisti:</strong> Vercel KV (Redis) – 24h säilytys</p>
+                                    <p className="text-slate-300">
+                                        <strong>Lähdekoodi:</strong>{' '}
+                                        <a
+                                            href="https://github.com/Ollilai/Megatrendikone"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-teal-400 hover:underline"
+                                        >
+                                            github.com/Ollilai/Megatrendikone
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                                <p className="text-sm text-slate-300 leading-relaxed">
+                                    <strong className="text-blue-400">💡 Huomio:</strong> Tekoäly ei ole täydellinen. Tulokset voivat
+                                    sisältää epätarkkuuksia tai virheitä. Käytä analyysia keskustelun avaajana ja inspiraation lähteenä
+                                    – ei valmiina totuutena. Parasta antia saat, kun yhdistät tekoälyn oivallukset oman
+                                    asiantuntemuksesi kanssa.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* About Sitra Megatrends */}
                     <section className="glass rounded-2xl p-6 md:p-8 mb-8">
                         <h2 className="text-2xl font-bold text-white mb-4">Sitran megatrendit 2026</h2>
@@ -121,13 +234,21 @@ export default function AboutPage() {
 
                     {/* Consulting CTA */}
                     <section className="bg-gradient-to-br from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-2xl p-6 md:p-8 mb-8">
-                        <h2 className="text-2xl font-bold text-white mb-4">Tarvitsetko käytännönläheistä tekoälykonsulttia?</h2>
-                        <p className="text-slate-300 leading-relaxed mb-6">
-                            Megatrendikoneen on rakentanut <strong className="text-white">Olli Laitinen</strong>,
-                            tekoälykonsultti, joka auttaa organisaatioita hyödyntämään tekoälyä käytännönläheisesti
-                            ja strategisesti – yhdistäen liiketoimintatarpeet, modernin teknologian ja toteutuksen,
-                            joka tuottaa hyötyä arjessa (ei vain kokeiluja).
-                        </p>
+                        <h2 className="text-2xl font-bold text-white mb-4">Moi!</h2>
+                        <div className="text-slate-300 leading-relaxed space-y-4 mb-6">
+                            <p>
+                                Kun Sitra julkaisi vuoden 2026 megatrendit tekoäly-ystävällisessä muodossa, innostuin tekemään
+                                niistä tämän kevyen äpin. Toivottavasti se tuo Sitran megatrendit lähemmäksi sinun
+                                organisaatiotasi ja on sinulle hyödyksi.
+                            </p>
+                            <p>
+                                Jos tarvitset käytännönläheistä tekoälykonsulttia rakentamaan sillan organisaation toiminnan
+                                ja tekoälyn välillä, ole yhteydessä.
+                            </p>
+                            <p className="text-white font-medium">
+                                Terveisin, Olli Laitinen
+                            </p>
+                        </div>
                         <div className="flex flex-wrap gap-4">
                             <a
                                 href="https://ollilaitinen.com"
@@ -180,5 +301,6 @@ export default function AboutPage() {
                 </motion.div>
             </div>
         </div>
+        </>
     );
 }
