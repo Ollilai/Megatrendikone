@@ -7,8 +7,8 @@ interface DownloadableCardProps {
     data: AnalysisResult;
 }
 
-export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps>(
-    function DownloadableCard({ data }, ref) {
+export const DownloadableCardFront = forwardRef<HTMLDivElement, DownloadableCardProps>(
+    function DownloadableCardFront({ data }, ref) {
         const companyInitial = data.company.name.charAt(0).toUpperCase();
 
         return (
@@ -16,19 +16,16 @@ export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps
                 ref={ref}
                 style={{
                     width: '1080px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '32px',
+                    height: '1350px',
                     padding: '32px',
                     backgroundColor: '#0f172a',
                     fontFamily: 'system-ui, -apple-system, sans-serif',
                 }}
             >
-                {/* Page 1: Insights & Wild Card */}
                 <div
                     style={{
-                        width: '1016px',
-                        height: '1350px',
+                        width: '100%',
+                        height: '100%',
                         backgroundColor: '#1e293b',
                         borderRadius: '24px',
                         border: '1px solid rgba(100, 116, 139, 0.3)',
@@ -48,7 +45,7 @@ export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps
                     <div style={{ position: 'relative', zIndex: 1, padding: '48px', height: '100%', display: 'flex', flexDirection: 'column' }}>
                         {/* Header */}
                         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                            <p style={{ color: '#14b8a6', fontSize: '14px', fontWeight: 'bold', letterSpacing: '0.2em', marginBottom: '20px', textTransform: 'uppercase' }}>
+                            <p style={{ color: '#14b8a6', fontSize: '16px', fontWeight: 'bold', letterSpacing: '0.2em', marginBottom: '20px', textTransform: 'uppercase' }}>
                                 Tulevaisuuskortti 2026
                             </p>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '24px' }}>
@@ -93,7 +90,7 @@ export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps
                                 <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#14b8a6', textTransform: 'uppercase', letterSpacing: '0.1em' }}>#1 Mahdollisuus</span>
                             </div>
                             <p style={{ fontSize: '24px', fontWeight: '600', color: 'white', margin: '0 0 8px' }}>{data.topOpportunity.title}</p>
-                            <p style={{ fontSize: '16px', color: '#cbd5e1', margin: 0 }}>{data.topOpportunity.description}</p>
+                            <p style={{ fontSize: '16px', color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{data.topOpportunity.description}</p>
                         </div>
 
                         {/* Key insights */}
@@ -113,13 +110,13 @@ export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps
                                         padding: '20px',
                                     }}>
                                         <span style={{ color: '#14b8a6', fontSize: '20px', flexShrink: 0 }}>•</span>
-                                        <span style={{ fontSize: '18px', color: '#e2e8f0', lineHeight: 1.6 }}>{insight}</span>
+                                        <span style={{ fontSize: '17px', color: '#e2e8f0', lineHeight: 1.6 }}>{insight}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Wild card */}
+                        {/* Wild card with full description */}
                         <div
                             style={{
                                 backgroundColor: 'rgba(245, 158, 11, 0.1)',
@@ -130,10 +127,11 @@ export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps
                             }}
                         >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                                <span style={{ fontSize: '18px' }}>⚠️</span>
+                                <span style={{ fontSize: '20px' }}>⚠️</span>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#f59e0b', textTransform: 'uppercase' }}>Villi kortti</span>
                             </div>
-                            <p style={{ fontSize: '16px', fontWeight: '600', color: 'white', margin: 0 }}>{data.wildCard.title}</p>
+                            <p style={{ fontSize: '18px', fontWeight: '600', color: 'white', margin: '0 0 8px' }}>{data.wildCard.title}</p>
+                            <p style={{ fontSize: '14px', color: '#cbd5e1', margin: 0, lineHeight: 1.5 }}>{data.wildCard.description}</p>
                         </div>
 
                         {/* Footer */}
@@ -142,12 +140,30 @@ export const DownloadableCard = forwardRef<HTMLDivElement, DownloadableCardProps
                         </div>
                     </div>
                 </div>
+            </div>
+        );
+    }
+);
 
-                {/* Page 2: Future vision image */}
+export const DownloadableCardBack = forwardRef<HTMLDivElement, DownloadableCardProps>(
+    function DownloadableCardBack({ data }, ref) {
+        const companyInitial = data.company.name.charAt(0).toUpperCase();
+
+        return (
+            <div
+                ref={ref}
+                style={{
+                    width: '1080px',
+                    height: '1350px',
+                    padding: '32px',
+                    backgroundColor: '#0f172a',
+                    fontFamily: 'system-ui, -apple-system, sans-serif',
+                }}
+            >
                 <div
                     style={{
-                        width: '1016px',
-                        height: '1350px',
+                        width: '100%',
+                        height: '100%',
                         backgroundColor: '#1e293b',
                         borderRadius: '24px',
                         border: '1px solid rgba(100, 116, 139, 0.3)',

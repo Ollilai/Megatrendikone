@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { toPng } from 'html-to-image';
 import Link from 'next/link';
 import { type AnalysisResult } from '@/lib/megatrends';
-import { DownloadableCard } from './DownloadableCard';
+import { DownloadableCardFront, DownloadableCardBack } from './DownloadableCard';
 
 interface ShareButtonsProps {
     data: AnalysisResult;
@@ -12,25 +12,44 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ data }: ShareButtonsProps) {
     const [downloading, setDownloading] = useState(false);
-    const downloadRef = useRef<HTMLDivElement>(null);
+    const frontRef = useRef<HTMLDivElement>(null);
+    const backRef = useRef<HTMLDivElement>(null);
 
-    const handleDownloadImage = async () => {
-        if (downloading || !downloadRef.current) return;
+    const handleDownloadImages = async () => {
+        if (downloading) return;
         setDownloading(true);
 
         try {
-            // Capture both card sides as a single image
-            const dataUrl = await toPng(downloadRef.current, {
-                quality: 0.95,
-                pixelRatio: 2,
-                backgroundColor: '#0f172a',
-            });
+            const baseFilename = data.company.name.toLowerCase().replace(/\s+/g, '-');
 
-            // Download the image
-            const link = document.createElement('a');
-            link.download = `${data.company.name.toLowerCase().replace(/\s+/g, '-')}-tulevaisuuskortti.png`;
-            link.href = dataUrl;
-            link.click();
+            // Download front card
+            if (frontRef.current) {
+                const frontDataUrl = await toPng(frontRef.current, {
+                    quality: 0.95,
+                    pixelRatio: 2,
+                    backgroundColor: '#0f172a',
+                });
+                const frontLink = document.createElement('a');
+                frontLink.download = `${baseFilename}-tulevaisuuskortti-1.png`;
+                frontLink.href = frontDataUrl;
+                frontLink.click();
+            }
+
+            // Small delay between downloads
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Download back card
+            if (backRef.current) {
+                const backDataUrl = await toPng(backRef.current, {
+                    quality: 0.95,
+                    pixelRatio: 2,
+                    backgroundColor: '#0f172a',
+                });
+                const backLink = document.createElement('a');
+                backLink.download = `${baseFilename}-tulevaisuuskortti-2.png`;
+                backLink.href = backDataUrl;
+                backLink.click();
+            }
         } catch (error) {
             console.error('Download failed:', error);
             alert('Lataus epäonnistui. Kokeile uudelleen.');
@@ -48,7 +67,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
 
     return (
         <>
-            {/* Hidden downloadable card for image generation */}
+            {/* Hidden downloadable cards for image generation */}
             <div
                 style={{
                     position: 'absolute',
@@ -59,14 +78,15 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 }}
                 aria-hidden="true"
             >
-                <DownloadableCard ref={downloadRef} data={data} />
+                <DownloadableCardFront ref={frontRef} data={data} />
+                <DownloadableCardBack ref={backRef} data={data} />
             </div>
 
             <div className="flex flex-col items-center gap-4">
                 {/* Primary CTAs */}
                 <div className="flex flex-wrap gap-4 justify-center">
                     <button
-                        onClick={handleDownloadImage}
+                        onClick={handleDownloadImages}
                         disabled={downloading}
                         className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-bold text-lg rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-glow-teal transform hover:-translate-y-0.5"
                     >
@@ -80,7 +100,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                 </svg>
-                                Lataa tulevaisuuskortti
+                                Lataa tulevaisuuskortti (2 kuvaa)
                             </>
                         )}
                     </button>
