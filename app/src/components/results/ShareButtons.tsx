@@ -23,6 +23,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
         setLoading(true);
 
         try {
+            console.log('Fetching image:', url);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -31,31 +32,42 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 body: JSON.stringify(body),
             });
 
+            console.log('Response status:', response.status);
+            console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
             if (!response.ok) {
                 const errorText = await response.text();
+                console.error('Server error:', errorText);
                 throw new Error(`Server error: ${response.status} ${errorText}`);
             }
 
-            const blob = await response.blob();
-            const file = new File([blob], filename, { type: 'image/png' });
+            const contentType = response.headers.get('content-type');
+            console.log('Content-Type:', contentType);
 
-            // Try native sharing first (works on mobile)
-            if (navigator.share && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    files: [file],
-                    title: filename,
-                });
-            } else {
-                // Fallback to classic download
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = filename;
-                link.click();
-                URL.revokeObjectURL(link.href);
+            const blob = await response.blob();
+            console.log('Blob size:', blob.size, 'type:', blob.type);
+
+            if (blob.size === 0) {
+                throw new Error('Empty response from server');
             }
+
+            // Use classic download for server-generated images
+            // Note: navigator.share() requires synchronous call from user gesture,
+            // but our async fetch takes ~7s, losing the gesture context.
+            // Classic download works reliably across all platforms.
+            console.log('Triggering download');
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+            console.log('Download completed');
         } catch (error) {
             console.error('Download failed:', error);
-            alert('Lataus epäonnistui. Kokeile uudelleen.');
+            console.error('Error details:', error instanceof Error ? error.message : String(error));
+            alert(`Lataus epäonnistui: ${error instanceof Error ? error.message : 'Tuntematon virhe'}`);
         } finally {
             setLoading(false);
         }
