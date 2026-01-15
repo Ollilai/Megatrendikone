@@ -23,7 +23,6 @@ export function ShareButtons({ data }: ShareButtonsProps) {
         setLoading(true);
 
         try {
-            console.log('Fetching image:', url);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -32,20 +31,13 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 body: JSON.stringify(body),
             });
 
-            console.log('Response status:', response.status);
-            console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-
             if (!response.ok) {
                 const errorText = await response.text();
                 console.error('Server error:', errorText);
-                throw new Error(`Server error: ${response.status} ${errorText}`);
+                throw new Error(`Server error: ${response.status}`);
             }
 
-            const contentType = response.headers.get('content-type');
-            console.log('Content-Type:', contentType);
-
             const blob = await response.blob();
-            console.log('Blob size:', blob.size, 'type:', blob.type);
 
             if (blob.size === 0) {
                 throw new Error('Empty response from server');
@@ -55,7 +47,6 @@ export function ShareButtons({ data }: ShareButtonsProps) {
             // Note: navigator.share() requires synchronous call from user gesture,
             // but our async fetch takes ~7s, losing the gesture context.
             // Classic download works reliably across all platforms.
-            console.log('Triggering download');
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = filename;
@@ -63,10 +54,8 @@ export function ShareButtons({ data }: ShareButtonsProps) {
             link.click();
             document.body.removeChild(link);
             setTimeout(() => URL.revokeObjectURL(link.href), 100);
-            console.log('Download completed');
         } catch (error) {
             console.error('Download failed:', error);
-            console.error('Error details:', error instanceof Error ? error.message : String(error));
             alert(`Lataus epäonnistui: ${error instanceof Error ? error.message : 'Tuntematon virhe'}`);
         } finally {
             setLoading(false);
@@ -119,7 +108,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 <button
                     onClick={handleDownloadFront}
                     disabled={downloadingFront}
-                    className="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
+                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
                 >
                     {downloadingFront ? (
                         <>
@@ -140,7 +129,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 <button
                     onClick={handleDownloadBack}
                     disabled={downloadingBack}
-                    className="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
+                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
                 >
                     {downloadingBack ? (
                         <>
