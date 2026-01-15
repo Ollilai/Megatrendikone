@@ -133,7 +133,8 @@ export async function POST(request: NextRequest) {
 
         // RAG: Search for relevant megatrend context based on company info
         console.log('Searching for relevant megatrend context...');
-        const queryText = `${companyName} ${websiteContent.substring(0, 3000)}`;
+        // Use up to 8000 chars including strategic pages for better semantic matching
+        const queryText = `${companyName}\n${websiteContent.substring(0, 8000)}`;
         const relevantChunks = await searchRelevantChunks(queryText, { topK: 10, minScore: 0.25 });
         const megatrendContext = formatChunksAsContext(relevantChunks);
         console.log(`Found ${relevantChunks.length} relevant chunks for RAG context`);
