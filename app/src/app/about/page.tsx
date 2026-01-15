@@ -104,7 +104,7 @@ export default function AboutPage() {
                                     <p className="text-sm font-mono text-slate-300 mb-2">RAG-prosessi:</p>
                                     <ul className="text-sm text-slate-400 space-y-2 ml-4">
                                         <li>
-                                            <strong className="text-slate-300">1. Vektorisointi:</strong> Sitran 71-sivuinen PDF on käsitelty
+                                            <strong className="text-slate-300">1. Vektorisointi:</strong> Sitran tekoäly-ystävällinen JSON-julkaisu on käsitelty
                                             semanttisiksi chunkeiksi (~250 osiota). Jokaiselle on luotu OpenAI text-embedding-3-small -vektori.
                                         </li>
                                         <li>
@@ -188,7 +188,7 @@ export default function AboutPage() {
                                     <p className="text-slate-300"><strong>Frontend:</strong> Next.js 15, React, TypeScript, Tailwind CSS</p>
                                     <p className="text-slate-300"><strong>Backend:</strong> Next.js API Routes (palvelinkomponentit)</p>
                                     <p className="text-slate-300"><strong>Tekoälymallit:</strong> OpenAI GPT-5.1 o1 (analyysi), Google Gemini 2.5 Flash Image (kuvat), OpenAI text-embedding-3-small (RAG)</p>
-                                    <p className="text-slate-300"><strong>RAG-järjestelmä:</strong> Pre-computed embeddings (~250 chunks Sitran PDF:stä), in-memory cosine similarity search</p>
+                                    <p className="text-slate-300"><strong>RAG-järjestelmä:</strong> Pre-computed embeddings (~250 chunks Sitran JSON-datasta), in-memory cosine similarity search</p>
                                     <p className="text-slate-300"><strong>Hosting:</strong> Vercel (Edge Network)</p>
                                     <p className="text-slate-300"><strong>Välimuisti:</strong> Vercel KV (Redis) – 24h säilytys</p>
                                     <p className="text-slate-300">
