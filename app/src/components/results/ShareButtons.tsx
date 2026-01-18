@@ -55,8 +55,8 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 // Critical: Wait for images to load before capturing on mobile
                 const images = backRef.current.querySelectorAll('img');
                 const imageLoadPromises = Array.from(images).map(img => {
-                    if (img.complete) return Promise.resolve();
-                    return new Promise((resolve, reject) => {
+                    if (img.complete) return Promise.resolve<void>();
+                    return new Promise<void>((resolve, reject) => {
                         img.onload = () => resolve();
                         img.onerror = () => reject(new Error('Image failed to load'));
                         // Timeout after 10 seconds
