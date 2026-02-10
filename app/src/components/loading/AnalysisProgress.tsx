@@ -38,7 +38,7 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-4">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 flex flex-col items-center justify-center px-4">
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -61,18 +61,18 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                 )}
 
                 {/* Company name */}
-                <h2 className="text-2xl font-bold text-white mb-8">{companyName}</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-8">{companyName}</h2>
 
                 {/* Animated spinner */}
                 <div className="relative w-24 h-24 mx-auto mb-8">
-                    <div className="absolute inset-0 rounded-full border-4 border-slate-700" />
+                    <div className="absolute inset-0 rounded-full border-4 border-slate-200" />
                     <motion.div
-                        className="absolute inset-0 rounded-full border-4 border-t-primary-400 border-r-transparent border-b-transparent border-l-transparent"
+                        className="absolute inset-0 rounded-full border-4 border-t-primary-600 border-r-transparent border-b-transparent border-l-transparent"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                     />
-                    <div className="absolute inset-2 rounded-full bg-slate-800/50 flex items-center justify-center">
-                        <span className="text-primary-400 font-bold">{progress}%</span>
+                    <div className="absolute inset-2 rounded-full bg-slate-100/50 flex items-center justify-center">
+                        <span className="text-primary-600 font-bold">{progress}%</span>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="text-lg text-slate-300"
+                    className="text-lg text-slate-700"
                     role="status"
                     aria-live="polite"
                 >
@@ -91,7 +91,7 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
 
                 {/* Progress bar */}
                 <div
-                    className="mt-8 w-full bg-slate-700 rounded-full h-2 overflow-hidden"
+                    className="mt-8 w-full bg-slate-200 rounded-full h-2 overflow-hidden"
                     role="progressbar"
                     aria-valuenow={progress}
                     aria-valuemin={0}
@@ -99,7 +99,7 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                     aria-label="Analyysin edistyminen"
                 >
                     <motion.div
-                        className="h-full bg-gradient-to-r from-primary-500 to-accent-500"
+                        className="h-full bg-gradient-to-r from-primary-600 to-accent-600"
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
                         transition={{ duration: 0.5 }}
@@ -107,7 +107,7 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                 </div>
 
                 {/* Time estimate */}
-                <p className="mt-4 text-sm text-slate-500">
+                <p className="mt-4 text-sm text-slate-600">
                     Analyysi kestää noin 30-60 sekuntia
                 </p>
             </motion.div>

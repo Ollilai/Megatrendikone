@@ -41,97 +41,97 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-slate-950 relative overflow-hidden flex flex-col items-center justify-center px-4 noise">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
-          <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[100px] animate-pulse-soft" />
-          <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent-500/10 rounded-full blur-[100px]" />
-          <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] bg-primary-500/10 rounded-full blur-[80px]" />
+      <div className="min-h-screen bg-slate-50 relative overflow-hidden flex flex-col items-center justify-center px-4 noise">
+        {/* Background decoration */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
+            <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[100px] animate-pulse-soft" />
+            <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent-500/10 rounded-full blur-[100px]" />
+            <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] bg-primary-500/10 rounded-full blur-[80px]" />
+          </div>
         </div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative z-10 max-w-2xl w-full text-center"
-      >
-        {/* Main headline */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-          Miten megatrendit vaikuttavat{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
-            sinun organisaatioosi?
-          </span>
-        </h1>
-
-        <p className="text-lg text-slate-400 mb-10 max-w-xl mx-auto">
-          Analysoi organisaatiosi megatrendien valossa ja saa jaettava tulevaisuuskortti.
-        </p>
-
-        {/* Form */}
-        <motion.form
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          onSubmit={handleSubmit}
-          className="glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden group"
+          transition={{ duration: 0.6 }}
+          className="relative z-10 max-w-2xl w-full text-center"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-          <div className="space-y-4">
-            <Input
-              id="companyName"
-              label="Organisaation nimi"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              placeholder="esim. Kone Oyj, Helsingin kaupunki"
-              disabled={isLoading}
-              fullWidth
-            />
+          {/* Main headline */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            Miten megatrendit vaikuttavat{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3d6223] to-[#3b75af]">
+              sinun organisaatioosi?
+            </span>
+          </h1>
 
-            <Input
-              id="websiteUrl"
-              label="Verkkosivujen osoite"
-              value={websiteUrl}
-              onChange={(e) => setWebsiteUrl(e.target.value)}
-              placeholder="esim. kone.fi"
-              disabled={isLoading}
-              fullWidth
-            />
-          </div>
+          <p className="text-lg text-slate-600 mb-10 max-w-xl mx-auto">
+            Analysoi organisaatiosi megatrendien valossa ja saa jaettava tulevaisuuskortti.
+          </p>
 
-          {error && (
-            <motion.p
-              role="alert"
-              aria-live="assertive"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-error text-sm mt-4"
-            >
-              {error}
-            </motion.p>
-          )}
-
-          <Button
-            type="submit"
-            isLoading={isLoading}
-            variant="primary"
-            fullWidth
-            className="mt-6"
+          {/* Form */}
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            onSubmit={handleSubmit}
+            className="glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden group"
           >
-            Analysoi
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </Button>
-        </motion.form>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 pointer-events-none" />
+            <div className="space-y-4">
+              <Input
+                id="companyName"
+                label="Organisaation nimi"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                placeholder="esim. Kone Oyj, Helsingin kaupunki"
+                disabled={isLoading}
+                fullWidth
+              />
 
-        {/* Footer */}
-        <p className="mt-8 text-sm text-slate-500">
-          <a href="/about" className="text-primary-400 hover:underline">Tietoa palvelusta</a>
-        </p>
-      </motion.div>
-    </div>
+              <Input
+                id="websiteUrl"
+                label="Verkkosivujen osoite"
+                value={websiteUrl}
+                onChange={(e) => setWebsiteUrl(e.target.value)}
+                placeholder="esim. kone.fi"
+                disabled={isLoading}
+                fullWidth
+              />
+            </div>
+
+            {error && (
+              <motion.p
+                role="alert"
+                aria-live="assertive"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-error text-sm mt-4"
+              >
+                {error}
+              </motion.p>
+            )}
+
+            <Button
+              type="submit"
+              isLoading={isLoading}
+              variant="primary"
+              fullWidth
+              className="mt-6"
+            >
+              Analysoi
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Button>
+          </motion.form>
+
+          {/* Footer */}
+          <p className="mt-8 text-sm text-slate-500">
+            <a href="/about" className="text-primary-600 hover:underline">Tietoa palvelusta</a>
+          </p>
+        </motion.div>
+      </div>
     </>
   );
 }

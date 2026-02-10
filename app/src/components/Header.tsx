@@ -7,13 +7,13 @@ export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-lg">
+        <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-lg">
             <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo / Brand */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <img src="/macon-logo.svg" alt="Macon" className="h-6" />
-                        <span className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors">
+                        <img src="/Macon-logo.png" alt="Macon" className="h-8" />
+                        <span className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
                             Megatrendikone
                         </span>
                     </Link>
@@ -22,22 +22,21 @@ export function Header() {
                     <div className="hidden md:flex items-center gap-6">
                         <Link
                             href="/"
-                            className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
                         >
                             Etusivu
                         </Link>
                         <Link
                             href="/about"
-                            className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
                         >
                             Tietoa
                         </Link>
-                        <div className="h-4 w-px bg-slate-700" />
+                        <div className="h-4 w-px bg-slate-200" />
                         <a
-                            href="https://www.sitra.fi/ennakointi/megatrendit/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm font-medium text-slate-300 hover:text-primary-400 transition-colors flex items-center gap-1"
+                            className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors flex items-center gap-1"
                         >
                             Sitran megatrendit
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -48,7 +47,7 @@ export function Header() {
                             href="https://macon.fi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm font-medium text-slate-300 hover:text-primary-400 transition-colors flex items-center gap-1"
+                            className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors flex items-center gap-1"
                         >
                             macon.fi
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -59,7 +58,7 @@ export function Header() {
                             href="https://www.linkedin.com/in/olli-laitinen/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-300 hover:text-[#0A66C2] transition-colors"
+                            className="text-slate-500 hover:text-[#0A66C2] transition-colors"
                             aria-label="LinkedIn"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -67,10 +66,10 @@ export function Header() {
                             </svg>
                         </a>
                         <a
-                            href="https://github.com/Ollilai/Megatrendikone"
+                            href="https://github.com/Ollilai/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-300 hover:text-white transition-colors"
+                            className="text-slate-500 hover:text-slate-900 transition-colors"
                             aria-label="GitHub"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -82,7 +81,7 @@ export function Header() {
                     {/* Mobile menu button */}
                     <button
                         type="button"
-                        className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                        className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -102,29 +101,28 @@ export function Header() {
                     </button>
                 </div>
 
-                {/* Mobile menu */}
                 {mobileMenuOpen && (
-                    <div className="md:hidden py-4 space-y-3 border-t border-slate-800">
+                    <div className="md:hidden py-4 space-y-3 border-t border-slate-200 bg-white">
                         <Link
                             href="/"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Etusivu
                         </Link>
                         <Link
                             href="/about"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Tietoa palvelusta
                         </Link>
-                        <div className="border-t border-slate-800 my-2" />
+                        <div className="border-t border-slate-200 my-2" />
                         <a
                             href="https://www.sitra.fi/ennakointi/megatrendit/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-primary-400 rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-600 hover:text-primary-600 rounded-md transition-colors"
                         >
                             Sitran megatrendit →
                         </a>
@@ -132,7 +130,7 @@ export function Header() {
                             href="https://macon.fi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-primary-400 rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-600 hover:text-primary-600 rounded-md transition-colors"
                         >
                             macon.fi →
                         </a>
@@ -140,15 +138,15 @@ export function Header() {
                             href="https://www.linkedin.com/in/olli-laitinen/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-[#0A66C2] rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-600 hover:text-[#0A66C2] rounded-md transition-colors"
                         >
                             LinkedIn →
                         </a>
                         <a
-                            href="https://github.com/Ollilai/Megatrendikone"
+                            href="https://github.com/Ollilai/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-600 hover:text-slate-900 rounded-md transition-colors"
                         >
                             GitHub →
                         </a>
