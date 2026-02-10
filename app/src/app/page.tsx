@@ -47,7 +47,7 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
           <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[100px] animate-pulse-soft" />
           <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent-500/10 rounded-full blur-[100px]" />
-          <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] bg-teal-500/10 rounded-full blur-[80px]" />
+          <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] bg-primary-500/10 rounded-full blur-[80px]" />
         </div>
       </div>
 
@@ -60,7 +60,7 @@ export default function Home() {
         {/* Main headline */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
           Miten megatrendit vaikuttavat{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
             sinun organisaatioosi?
           </span>
         </h1>
@@ -128,7 +128,7 @@ export default function Home() {
 
         {/* Footer */}
         <p className="mt-8 text-sm text-slate-500">
-          <a href="/about" className="text-teal-400 hover:underline">Tietoa palvelusta</a>
+          <a href="/about" className="text-primary-400 hover:underline">Tietoa palvelusta</a>
         </p>
       </motion.div>
     </div>

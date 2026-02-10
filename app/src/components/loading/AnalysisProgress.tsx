@@ -67,12 +67,12 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                 <div className="relative w-24 h-24 mx-auto mb-8">
                     <div className="absolute inset-0 rounded-full border-4 border-slate-700" />
                     <motion.div
-                        className="absolute inset-0 rounded-full border-4 border-t-teal-400 border-r-transparent border-b-transparent border-l-transparent"
+                        className="absolute inset-0 rounded-full border-4 border-t-primary-400 border-r-transparent border-b-transparent border-l-transparent"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                     />
                     <div className="absolute inset-2 rounded-full bg-slate-800/50 flex items-center justify-center">
-                        <span className="text-teal-400 font-bold">{progress}%</span>
+                        <span className="text-primary-400 font-bold">{progress}%</span>
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@ export function AnalysisProgress({ companyName, logoUrl }: AnalysisProgressProps
                     aria-label="Analyysin edistyminen"
                 >
                     <motion.div
-                        className="h-full bg-gradient-to-r from-teal-500 to-blue-500"
+                        className="h-full bg-gradient-to-r from-primary-500 to-accent-500"
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
                         transition={{ duration: 0.5 }}

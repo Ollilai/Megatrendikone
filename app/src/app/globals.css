@@ -2,27 +2,28 @@
 
 /* ============================================
    MEGATRENDIKONE DESIGN SYSTEM
-   Nordic Futurism Aesthetic
+   Macon Brand Identity
    ============================================ */
 
 /* Color Palette */
 :root {
-  /* Primary - Teal */
-  --color-primary-50: #f0fdfa;
-  --color-primary-100: #ccfbf1;
-  --color-primary-200: #99f6e4;
-  --color-primary-300: #5eead4;
-  --color-primary-400: #2dd4bf;
-  --color-primary-500: #14b8a6;
-  --color-primary-600: #0d9488;
-  --color-primary-700: #0f766e;
-  --color-primary-800: #115e59;
-  --color-primary-900: #134e4a;
+  /* Primary - Macon Green */
+  --color-primary-50: #f4f8f2;
+  --color-primary-100: #e6f0df;
+  --color-primary-200: #cde1c0;
+  --color-primary-300: #a8cb92;
+  --color-primary-400: #7db15d;
+  --color-primary-500: #4A782C;
+  --color-primary-600: #3d6223;
+  --color-primary-700: #324e1d;
+  --color-primary-800: #2a4019;
+  --color-primary-900: #233517;
 
-  /* Accent - Blue */
-  --color-accent-400: #60a5fa;
-  --color-accent-500: #3b82f6;
-  --color-accent-600: #2563eb;
+  /* Accent - Macon Blue & Neon Green */
+  --color-accent-400: #99c5e8;
+  --color-accent-500: #76A5D8;
+  --color-accent-600: #5a8bc4;
+  --color-neon-green: #80B837;
 
   /* Slate - Neutrals */
   --color-slate-50: #f8fafc;
@@ -77,7 +78,7 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-glow-teal: 0 0 40px -12px var(--color-primary-500);
+  --shadow-glow-green: 0 0 40px -12px var(--color-primary-500);
   --shadow-glow-blue: 0 0 40px -12px var(--color-accent-500);
 
   /* Transitions */
@@ -216,8 +217,8 @@ input, textarea, select {
 }
 
 /* Glow Effects */
-.glow-teal {
-  box-shadow: var(--shadow-glow-teal);
+.glow-green {
+  box-shadow: var(--shadow-glow-green);
 }
 
 .glow-blue {

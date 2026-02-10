@@ -54,19 +54,19 @@ export default function AboutPage() {
                         </p>
                         <ul className="space-y-2 text-slate-300 ml-4">
                             <li className="flex items-start gap-2">
-                                <span className="text-teal-400 mt-1">•</span>
+                                <span className="text-primary-400 mt-1">•</span>
                                 <span>tunnistaa toimintaympäristön muutoksia ajoissa</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-teal-400 mt-1">•</span>
+                                <span className="text-primary-400 mt-1">•</span>
                                 <span>arvioida vaikutuksia omaan toimintaan, asiakkaisiin ja sidosryhmiin</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-teal-400 mt-1">•</span>
+                                <span className="text-primary-400 mt-1">•</span>
                                 <span>löytää riskejä, mahdollisuuksia ja kehitysteemoja</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-teal-400 mt-1">•</span>
+                                <span className="text-primary-400 mt-1">•</span>
                                 <span>tuoda tulevaisuusajattelua osaksi arjen tekemistä</span>
                             </li>
                         </ul>
@@ -83,7 +83,7 @@ export default function AboutPage() {
                         <div className="space-y-6">
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">1.</span> Organisaatiosi tietojen keräys
+                                    <span className="text-primary-400">1.</span> Organisaatiosi tietojen keräys
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6">
                                     Kun syötät verkkosivustosi osoitteen, järjestelmä hakee kotisivun sisällön ja
@@ -94,7 +94,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">2.</span> RAG-haku Sitran megatrendidatasta
+                                    <span className="text-primary-400">2.</span> RAG-haku Sitran megatrendidatasta
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6 mb-3">
                                     Käytän RAG-tekniikkaa (Retrieval Augmented Generation) varmistaakseni, että analyysi
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">3.</span> Megatrendi-analyysi (GPT-5.1 o1)
+                                    <span className="text-primary-400">3.</span> Megatrendi-analyysi (GPT-5.1 o1)
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6 mb-3">
                                     Kun relevantit osiot Sitran datasta on löydetty, järjestelmä lähettää ne yhdessä organisaatiosi
@@ -136,7 +136,7 @@ export default function AboutPage() {
                                     <p className="text-sm font-mono text-slate-300 mb-2">Promptin rakenne:</p>
                                     <ul className="text-sm text-slate-400 space-y-1 ml-4">
                                         <li>• Organisaation perustiedot ja toiminta</li>
-                                        <li>• <strong className="text-teal-400">RAG-haulla löydetyt relevanteimmat osiot Sitran raportista</strong></li>
+                                        <li>• <strong className="text-primary-400">RAG-haulla löydetyt relevanteimmat osiot Sitran raportista</strong></li>
                                         <li>• Sitran 4 megatrendin yleiskatsaus</li>
                                         <li>• Ohjeet analyysin laatimiseen (mahdollisuudet, uhat, yhteiskuntasopimus)</li>
                                         <li>• Vaatimus käytännönläheisyydelle ja konkreettisuudelle</li>
@@ -151,7 +151,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">4.</span> Tulevaisuuskuvan generointi (Gemini 2.5 Flash Image)
+                                    <span className="text-primary-400">4.</span> Tulevaisuuskuvan generointi (Gemini 2.5 Flash Image)
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6 mb-3">
                                     Rinnakkain analyysin kanssa, järjestelmä pyytää Googlen Gemini 2.5 Flash Image -mallia
@@ -171,7 +171,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">5.</span> Tulosten esittäminen
+                                    <span className="text-primary-400">5.</span> Tulosten esittäminen
                                 </h3>
                                 <p className="text-slate-300 leading-relaxed ml-6">
                                     Saat analyysin, jossa on keskeinen mahdollisuus, yllättävä uhka, rooli yhteiskuntasopimuksessa
@@ -182,7 +182,7 @@ export default function AboutPage() {
 
                             <div>
                                 <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                                    <span className="text-teal-400">📊</span> Tekninen arkkitehtuuri
+                                    <span className="text-primary-400">📊</span> Tekninen arkkitehtuuri
                                 </h3>
                                 <div className="ml-6 space-y-2">
                                     <p className="text-slate-300"><strong>Frontend:</strong> Next.js 15, React, TypeScript, Tailwind CSS</p>
@@ -197,7 +197,7 @@ export default function AboutPage() {
                                             href="https://github.com/Ollilai/Megatrendikone"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-teal-400 hover:underline"
+                                            className="text-primary-400 hover:underline"
                                         >
                                             github.com/Ollilai/Megatrendikone
                                         </a>
@@ -205,7 +205,7 @@ export default function AboutPage() {
                                 </div>
                             </div>
 
-                            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                            <div className="bg-accent-500/10 border border-accent-500/20 rounded-lg p-4">
                                 <p className="text-sm text-slate-300 leading-relaxed">
                                     <strong className="text-blue-400">💡 Huomio:</strong> Tekoäly ei ole täydellinen. Tulokset voivat
                                     sisältää epätarkkuuksia tai virheitä. Käytä analyysia keskustelun avaajana ja inspiraation lähteenä
@@ -256,7 +256,7 @@ export default function AboutPage() {
                                 href="https://www.sitra.fi/ennakointi/megatrendit/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-teal-400 hover:underline"
+                                className="text-primary-400 hover:underline"
                             >
                                 sitra.fi/ennakointi/megatrendit
                             </a>
@@ -267,7 +267,7 @@ export default function AboutPage() {
                     </section>
 
                     {/* Consulting CTA */}
-                    <section className="bg-gradient-to-br from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-2xl p-6 md:p-8 mb-8">
+                    <section className="bg-gradient-to-br from-primary-500/10 to-accent-500/10 border border-primary-500/20 rounded-2xl p-6 md:p-8 mb-8">
                         <h2 className="text-2xl font-bold text-white mb-4">Moi!</h2>
                         <div className="text-slate-300 leading-relaxed space-y-4 mb-6">
                             <p>
@@ -285,7 +285,7 @@ export default function AboutPage() {
                         </div>
                         <div className="flex flex-wrap gap-4">
                             <a
-                                href="https://ollilaitinen.com"
+                                href="https://macon.fi"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-xl transition-all"
@@ -293,7 +293,7 @@ export default function AboutPage() {
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
-                                ollilaitinen.com
+                                macon.fi
                             </a>
                             <a
                                 href="https://www.linkedin.com/in/olli-laitinen/"

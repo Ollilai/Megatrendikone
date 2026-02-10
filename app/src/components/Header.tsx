@@ -12,8 +12,7 @@ export function Header() {
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo / Brand */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="text-2xl">🔮</div>
-                        <span className="text-xl font-bold text-white group-hover:text-teal-400 transition-colors">
+                        <span className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors">
                             Megatrendikone
                         </span>
                     </Link>
@@ -37,7 +36,7 @@ export function Header() {
                             href="https://www.sitra.fi/ennakointi/megatrendit/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors flex items-center gap-1"
+                            className="text-sm font-medium text-slate-300 hover:text-primary-400 transition-colors flex items-center gap-1"
                         >
                             Sitran megatrendit
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -45,12 +44,12 @@ export function Header() {
                             </svg>
                         </a>
                         <a
-                            href="https://ollilaitinen.com"
+                            href="https://macon.fi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors flex items-center gap-1"
+                            className="text-sm font-medium text-slate-300 hover:text-primary-400 transition-colors flex items-center gap-1"
                         >
-                            ollilaitinen.com
+                            macon.fi
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
@@ -124,17 +123,17 @@ export function Header() {
                             href="https://www.sitra.fi/ennakointi/megatrendit/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-teal-400 rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-primary-400 rounded-md transition-colors"
                         >
                             Sitran megatrendit →
                         </a>
                         <a
-                            href="https://ollilaitinen.com"
+                            href="https://macon.fi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-teal-400 rounded-md transition-colors"
+                            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-primary-400 rounded-md transition-colors"
                         >
-                            ollilaitinen.com →
+                            macon.fi →
                         </a>
                         <a
                             href="https://www.linkedin.com/in/olli-laitinen/"

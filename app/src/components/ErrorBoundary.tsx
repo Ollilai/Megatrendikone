@@ -72,7 +72,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
                                         this.setState({ hasError: false, error: null });
                                         window.location.reload();
                                     }}
-                                    className="px-6 py-3 bg-teal-500 hover:bg-teal-400 text-white font-semibold rounded-xl transition-all"
+                                    className="px-6 py-3 bg-primary-500 hover:bg-primary-400 text-white font-semibold rounded-xl transition-all"
                                 >
                                     Yritä uudelleen
                                 </button>

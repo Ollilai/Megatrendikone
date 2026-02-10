@@ -133,7 +133,7 @@ function AnalyzeContent() {
                     <p className="text-slate-400 mb-6">{error}</p>
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-400 text-white font-semibold rounded-xl transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-400 text-white font-semibold rounded-xl transition-all"
                     >
                         ← Yritä uudelleen
                     </Link>
@@ -165,7 +165,7 @@ function AnalyzeContent() {
                 >
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <p className="text-teal-400 text-sm tracking-[0.2em] mb-2">MEGATRENDIPROFIILI 2026</p>
+                        <p className="text-primary-400 text-sm tracking-[0.2em] mb-2">MEGATRENDIPROFIILI 2026</p>
                         <h1 className="text-3xl md:text-4xl font-bold text-white">{result.company.name}</h1>
                         <p className="text-slate-400 mt-2">{result.company.industry}</p>
                     </div>
@@ -239,7 +239,7 @@ function AnalyzeContent() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="bg-gradient-to-br from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-2xl p-6 md:p-8 mb-8"
+                        className="bg-gradient-to-br from-primary-500/10 to-accent-500/10 border border-primary-500/20 rounded-2xl p-6 md:p-8 mb-8"
                     >
                         <h2 className="text-xl font-bold text-white mb-4">Moi!</h2>
                         <div className="text-slate-300 leading-relaxed space-y-3 mb-6">
@@ -258,7 +258,7 @@ function AnalyzeContent() {
                         </div>
                         <div className="flex flex-wrap gap-4">
                             <a
-                                href="https://ollilaitinen.com"
+                                href="https://macon.fi"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-xl transition-all"
@@ -266,7 +266,7 @@ function AnalyzeContent() {
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
-                                ollilaitinen.com
+                                macon.fi
                             </a>
                             <a
                                 href="https://www.linkedin.com/in/olli-laitinen/"
@@ -295,7 +295,7 @@ function AnalyzeContent() {
 
                     {/* Footer */}
                     <p className="text-center text-sm text-slate-500">
-                        <Link href="/about" className="text-teal-400 hover:underline">
+                        <Link href="/about" className="text-primary-400 hover:underline">
                             Tietoa palvelusta
                         </Link>
                     </p>
@@ -310,7 +310,7 @@ export default function AnalyzePage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-                <div className="w-8 h-8 border-2 border-teal-400/30 border-t-teal-400 rounded-full animate-spin" />
+                <div className="w-8 h-8 border-2 border-primary-400/30 border-t-primary-400 rounded-full animate-spin" />
             </div>
         }>
             <AnalyzeContent />

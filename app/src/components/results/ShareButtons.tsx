@@ -108,7 +108,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 <button
                     onClick={handleDownloadFront}
                     disabled={downloadingFront}
-                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
+                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-primary-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary-500/10"
                 >
                     {downloadingFront ? (
                         <>
@@ -129,7 +129,7 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 <button
                     onClick={handleDownloadBack}
                     disabled={downloadingBack}
-                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
+                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-primary-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary-500/10"
                 >
                     {downloadingBack ? (
                         <>
