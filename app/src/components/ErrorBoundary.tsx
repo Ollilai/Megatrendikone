@@ -43,19 +43,19 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     render() {
         if (this.state.hasError) {
             return (
-                <div className="min-h-screen bg-slate-950 noise flex items-center justify-center px-4">
+                <div className="min-h-screen bg-slate-50 noise flex items-center justify-center px-4">
                     <div className="max-w-md text-center">
                         <div className="mb-6">
                             <p className="text-6xl mb-4" aria-hidden="true">⚠️</p>
-                            <h1 className="text-3xl font-bold text-white mb-4">
+                            <h1 className="text-3xl font-bold text-slate-900 mb-4">
                                 Jotain meni vikaan
                             </h1>
-                            <p className="text-slate-400 mb-6">
+                            <p className="text-slate-600 mb-6">
                                 Pahoittelut! Sovelluksessa tapahtui odottamaton virhe.
                                 Tiimimme on saanut ilmoituksen asiasta.
                             </p>
                             {process.env.NODE_ENV === 'development' && this.state.error && (
-                                <details className="text-left bg-slate-900 p-4 rounded-lg mb-6 text-sm text-slate-300">
+                                <details className="text-left bg-slate-100 p-4 rounded-lg mb-6 text-sm text-slate-700">
                                     <summary className="cursor-pointer font-semibold mb-2">
                                         Kehittäjätiedot
                                     </summary>
@@ -72,13 +72,13 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
                                         this.setState({ hasError: false, error: null });
                                         window.location.reload();
                                     }}
-                                    className="px-6 py-3 bg-teal-500 hover:bg-teal-400 text-white font-semibold rounded-xl transition-all"
+                                    className="px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white font-semibold rounded-xl transition-all"
                                 >
                                     Yritä uudelleen
                                 </button>
                                 <Link
                                     href="/"
-                                    className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-all"
+                                    className="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-900 font-semibold rounded-xl transition-all"
                                 >
                                     Palaa etusivulle
                                 </Link>

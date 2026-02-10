@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                             style={{
                                 position: 'absolute',
                                 inset: 0,
-                                background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, #1e293b 50%, rgba(59, 130, 246, 0.1) 100%)',
+                                background: 'linear-gradient(135deg, rgba(74, 120, 44, 0.1) 0%, #1e293b 50%, rgba(118, 165, 216, 0.1) 100%)',
                                 zIndex: 0,
                             }}
                         />
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
                         <div style={{ position: 'relative', zIndex: 1, padding: '48px', height: '100%', display: 'flex', flexDirection: 'column' }}>
                             {/* Header */}
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '32px', textAlign: 'center' }}>
-                                <p style={{ color: '#14b8a6', fontSize: '16px', fontWeight: 'bold', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase', margin: 0 }}>
+                                <p style={{ color: '#4A782C', fontSize: '16px', fontWeight: 'bold', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase', margin: 0 }}>
                                     Tulevaisuuskortti 2026
                                 </p>
                                 <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: 'white', margin: '24px 0 8px', textAlign: 'center' }}>{companyName}</h2>
@@ -73,15 +73,15 @@ export async function POST(req: NextRequest) {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    backgroundColor: 'rgba(20, 184, 166, 0.1)',
-                                    border: '1px solid rgba(20, 184, 166, 0.2)',
+                                    backgroundColor: 'rgba(74, 120, 44, 0.1)',
+                                    border: '1px solid rgba(74, 120, 44, 0.2)',
                                     borderRadius: '20px',
                                     padding: '32px',
                                     marginBottom: '32px',
                                 }}
                             >
                                 <div style={{ display: 'flex', marginBottom: '20px' }}>
-                                    <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#14b8a6', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Keskeinen mahdollisuus</span>
+                                    <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#4A782C', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Keskeinen mahdollisuus</span>
                                 </div>
                                 <p style={{ fontSize: '28px', fontWeight: '600', color: 'white', margin: '0 0 16px', lineHeight: 1.3 }}>{oppTitle}</p>
                                 <p style={{ fontSize: '18px', color: '#cbd5e1', margin: 0, lineHeight: 1.7 }}>{oppDesc}</p>

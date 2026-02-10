@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fi">
+    <html lang="fi" suppressHydrationWarning>
       <body
         className={`${sora.variable} ${dmSans.variable} antialiased`}
       >

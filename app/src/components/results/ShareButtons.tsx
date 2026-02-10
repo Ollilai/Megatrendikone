@@ -108,11 +108,11 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 <button
                     onClick={handleDownloadFront}
                     disabled={downloadingFront}
-                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
+                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-200 border border-slate-300 hover:border-primary-600/50 hover:bg-slate-300 text-slate-900 font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary-600/10"
                 >
                     {downloadingFront ? (
                         <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin" />
                             Ladataan...
                         </>
                     ) : (
@@ -129,11 +129,11 @@ export function ShareButtons({ data }: ShareButtonsProps) {
                 <button
                     onClick={handleDownloadBack}
                     disabled={downloadingBack}
-                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-800 border border-slate-600 hover:border-teal-500/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-teal-500/10"
+                    className="flex items-center justify-center gap-3 min-w-[240px] px-6 py-3 bg-slate-200 border border-slate-300 hover:border-primary-600/50 hover:bg-slate-300 text-slate-900 font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary-600/10"
                 >
                     {downloadingBack ? (
                         <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin" />
                             Ladataan...
                         </>
                     ) : (
