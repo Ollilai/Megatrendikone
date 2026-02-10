@@ -12,6 +12,7 @@ export function Header() {
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo / Brand */}
                     <Link href="/" className="flex items-center gap-3 group">
+                        <img src="/macon-logo.svg" alt="Macon" className="h-6" />
                         <span className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors">
                             Megatrendikone
                         </span>
